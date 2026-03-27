@@ -13,6 +13,6 @@
         {{- partial "footer.html" . -}}
       </div>
     </div>
-  <script src="{{ .Site.BaseURL }}js/matrix.js"></script>
+  <script src="{{ .Site.BaseURL }}js/matrix.js?v={{ .Site.Data.version | default "0.2.9" }}"></script>
   </body>
 </html>
