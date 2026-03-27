@@ -96,6 +96,10 @@ body {
 /* Global visited link color — overrides browser purple on all markup including Micro.blog archive */
 a:visited { color: var(--accent-visited); }
 
+/* Exclude date links from visited color — dates are navigation, not content */
+.post__date:visited,
+a:has(> time.dt-published):visited { color: var(--text-muted); }
+
 /* ── Site Wrapper (sidebar + content grid) ───────────────── */
 .site-wrapper {
   display: grid;
