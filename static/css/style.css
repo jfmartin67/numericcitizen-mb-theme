@@ -511,41 +511,41 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
 }
 
 .site-footer__content {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .site-footer__heading {
   font-family: var(--font-heading);
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-muted);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.35rem;
 }
 
 .site-footer__links {
   list-style: none;
   padding: 0;
-  margin: 0 0 1rem;
+  margin: 0 0 0.35rem;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  font-size: 0.875rem;
+  gap: 0.1rem;
+  font-size: 0.8125rem;
   color: var(--text-muted);
+  line-height: 1.4;
 }
 
 .site-footer__explore,
-.site-footer__shoutout,
 .site-footer__copyright {
   font-size: 0.8125rem;
   color: var(--text-muted);
-  margin-top: 0.75rem;
-  line-height: 1.6;
+  margin-top: 0.35rem;
+  line-height: 1.4;
 }
 
 .site-footer__copyright {
-  margin-top: 1rem;
+  margin-top: 0.35rem;
   opacity: 0.6;
 }
 
