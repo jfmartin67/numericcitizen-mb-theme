@@ -23,8 +23,8 @@
       {{- end }}
     </nav>
 
-    <!-- Configured pages -->
-    {{ $pages := where .Site.Pages "Kind" "page" }}
+    <!-- Configured pages (root-level only, excludes blog posts) -->
+    {{ $pages := where (where .Site.Pages "Kind" "page") "Section" "" }}
     {{ if $pages -}}
     <nav class="sidebar__pages" aria-label="Pages">
       <span class="sidebar__section-label">Pages</span>
