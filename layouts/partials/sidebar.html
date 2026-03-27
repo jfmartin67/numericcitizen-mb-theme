@@ -14,12 +14,14 @@
       {{- end }}
     </div>
 
-    <!-- About text from /about page -->
+    <!-- About text: /about page > description param > bio param -->
     {{ $about := .Site.GetPage "/about" }}
     {{ if $about -}}
-    <div class="sidebar__about">
-      {{ $about.Content }}
-    </div>
+    <div class="sidebar__about">{{ $about.Content }}</div>
+    {{- else with .Site.Params.description -}}
+    <div class="sidebar__about"><p>{{ . }}</p></div>
+    {{- else with .Site.Params.bio -}}
+    <div class="sidebar__about"><p>{{ . }}</p></div>
     {{- end }}
 
     <!-- Navigation -->
