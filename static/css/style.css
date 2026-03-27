@@ -555,7 +555,7 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
 }
 
 .site-footer__content a:hover    { color: var(--accent-hover); }
-.site-footer__content a:visited  { color: var(--accent-visited); }
+.site-footer__content a:visited  { color: var(--accent); }
 
 .site-footer__credit {
   font-size: 0.8125rem;
