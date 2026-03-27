@@ -35,6 +35,7 @@
   --text-muted:      #888;
   --accent:          #007aff;
   --accent-hover:    #3395ff;
+  --accent-visited:  #3d6fa8;
   --radius:          6px;
   --sidebar-width:   220px;
   --content-max:     660px;
@@ -50,20 +51,22 @@
     --border:      #e0e0e0;
     --text:        #1a1a1a;
     --text-muted:  #666;
-    --accent:      #007aff;
-    --accent-hover:#005ecb;
+    --accent:         #007aff;
+    --accent-hover:   #005ecb;
+    --accent-visited: #1a4d88;
   }
 }
 
 /* Manual overrides (saved preference beats system preference) */
 html.nc-light {
-  --bg:          #fafafa;
-  --bg-surface:  #f3f3f3;
-  --border:      #e0e0e0;
-  --text:        #1a1a1a;
-  --text-muted:  #666;
-  --accent:      #007aff;
-  --accent-hover:#005ecb;
+  --bg:             #fafafa;
+  --bg-surface:     #f3f3f3;
+  --border:         #e0e0e0;
+  --text:           #1a1a1a;
+  --text-muted:     #666;
+  --accent:         #007aff;
+  --accent-hover:   #005ecb;
+  --accent-visited: #1a4d88;
 }
 
 html.nc-dark {
@@ -365,7 +368,9 @@ body {
   text-underline-offset: 2px;
 }
 
-.post__content a:hover { color: var(--accent-hover); }
+.post__content a:hover   { color: var(--accent-hover); }
+.post__content a:visited { color: var(--accent-visited); }
+.post__title   a:visited { color: var(--accent-visited); }
 
 .post__content strong { font-weight: 600; }
 .post__content em     { font-style: italic; }
@@ -424,11 +429,15 @@ body {
 }
 
 /* Archive/list: constrain images to thumbnail size */
-.post--list .post__content img {
-  max-height: 180px;
+.post--list .post__content img,
+.p-summary img,
+.media-gallery img {
+  max-height: 200px;
   width: auto;
   max-width: 100%;
-  object-fit: cover;
+  height: auto;
+  border-radius: var(--radius);
+  display: block;
 }
 
 .post__content img {
