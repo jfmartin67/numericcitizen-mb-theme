@@ -133,8 +133,8 @@ body {
 .sidebar__avatar-link { display: block; }
 
 .sidebar__avatar {
-  width: 72px;
-  height: 72px;
+  width: 108px;
+  height: 108px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
@@ -299,7 +299,7 @@ body {
 .post--single .post__meta  { margin-bottom: 1.5rem; }
 
 /* ── Post Content ────────────────────────────────────────── */
-.post__content { font-size: 0.9375rem; }
+.post__content { font-size: 0.9375rem; line-height: 1.45; }
 
 .post__content > * + * { margin-top: 1em; }
 
