@@ -25,20 +25,38 @@
   // progress: 1.0 at head, 0.0 at tail.
   function charColor(progress) {
     if (progress > 0.95) {
-      return 'rgba(224,247,255,0.80)'; // head — near-white, -20% luminosity
+      return 'rgba(224,247,255,0.80)'; // head — near-white
     }
     if (progress > 0.4) {
       var t     = (progress - 0.4) / 0.55;
       var green = Math.round(180 + 75 * t);
-      var alpha = (0.28 + 0.48 * t).toFixed(2); // was 0.35+0.6t, ×0.8
+      var alpha = (0.28 + 0.48 * t).toFixed(2);
       return 'rgba(0,' + green + ',255,' + alpha + ')'; // bright cyan, fading
     }
     if (progress > 0.25) {
       var t2     = (progress - 0.25) / 0.15;
-      var alpha2 = (0.16 + 0.20 * t2).toFixed(2); // was 0.2+0.25t, ×0.8
+      var alpha2 = (0.16 + 0.20 * t2).toFixed(2);
       return 'rgba(30,120,220,' + alpha2 + ')'; // mid blue, fading
     }
-    return 'rgba(20,60,160,' + (progress * 0.44).toFixed(2) + ')'; // tail — deep blue, ×0.8
+    return 'rgba(20,60,160,' + (progress * 0.44).toFixed(2) + ')'; // tail — deep blue
+  }
+
+  // Darker blue palette for light mode (needs contrast against near-white background).
+  function charColorLight(progress) {
+    if (progress > 0.95) {
+      return 'rgba(0,70,190,0.95)'; // head — strong dark blue
+    }
+    if (progress > 0.4) {
+      var t     = (progress - 0.4) / 0.55;
+      var alpha = (0.55 + 0.35 * t).toFixed(2);
+      return 'rgba(0,55,170,' + alpha + ')'; // dark blue, fading
+    }
+    if (progress > 0.25) {
+      var t2     = (progress - 0.25) / 0.15;
+      var alpha2 = (0.30 + 0.25 * t2).toFixed(2);
+      return 'rgba(10,35,130,' + alpha2 + ')'; // mid dark blue
+    }
+    return 'rgba(5,20,100,' + (progress * 0.55).toFixed(2) + ')'; // tail — deep navy
   }
 
   // ── Setup ──────────────────────────────────────────────────
@@ -107,7 +125,7 @@
           if (row < 0 || row > rows) continue;
 
           var progress = 1 - j / col.length;
-          ctx.fillStyle = charColor(progress);
+          ctx.fillStyle = isLightMode() ? charColorLight(progress) : charColor(progress);
           ctx.fillText(randChar(), x, row * FONT_SIZE);
         }
 
