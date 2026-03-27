@@ -490,6 +490,20 @@ body {
   border-radius: 2px;
 }
 
+/* Light mode: active nav item uses border color (not white) to avoid stark box */
+@media (prefers-color-scheme: light) {
+  :root:not(.nc-dark) .sidebar__nav a.is-active,
+  :root:not(.nc-dark) .sidebar__pages a.is-active,
+  :root:not(.nc-dark) .sidebar__categories a.is-active {
+    background: var(--border);
+  }
+}
+html.nc-light .sidebar__nav a.is-active,
+html.nc-light .sidebar__pages a.is-active,
+html.nc-light .sidebar__categories a.is-active {
+  background: var(--border);
+}
+
 /* ── Theme Toggle ────────────────────────────────────────── */
 .sidebar__footer {
   margin-top: auto;

@@ -14,6 +14,13 @@
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  function isLightMode() {
+    var html = document.documentElement;
+    if (html.classList.contains('nc-light')) return true;
+    if (html.classList.contains('nc-dark'))  return false;
+    return window.matchMedia('(prefers-color-scheme: light)').matches;
+  }
+
   // Per-character color based on position in stream.
   // progress: 1.0 at head, 0.0 at tail.
   function charColor(progress) {
@@ -45,7 +52,6 @@
     'width:100%',
     'height:100%',
     'z-index:0',
-    'opacity:0.144', // was 0.18, -20% luminosity
     'pointer-events:none',
   ].join(';');
   document.body.insertBefore(canvas, document.body.firstChild);
@@ -53,6 +59,10 @@
   var ctx  = canvas.getContext('2d');
   var cols = [];
   var frameCount = 0;
+
+  function updateOpacity() {
+    canvas.style.opacity = isLightMode() ? '0.05' : '0.144';
+  }
 
   function init() {
     canvas.width  = window.innerWidth;
@@ -78,9 +88,11 @@
   function draw() {
     var rows = Math.floor(canvas.height / FONT_SIZE);
 
-    // Fade trail — semi-transparent overlay darkens old characters
-    // instead of clearing, producing the glowing trail effect.
-    ctx.fillStyle = 'rgba(15,15,15,0.2)';
+    // Trail fade — colour matches current background so old characters
+    // dissolve naturally in both dark and light mode.
+    ctx.fillStyle = isLightMode()
+      ? 'rgba(245,245,245,0.35)'
+      : 'rgba(15,15,15,0.2)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.font = FONT_SIZE + 'px monospace';
@@ -124,6 +136,7 @@
     requestAnimationFrame(loop);
   }
 
+  updateOpacity();
   init();
   loop();
 
@@ -131,4 +144,9 @@
     init();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   });
+
+  // React to theme toggle (class change on <html>)
+  var observer = new MutationObserver(updateOpacity);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
 }());
