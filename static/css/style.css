@@ -256,6 +256,9 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   padding: 2.5rem 0 3rem;
 }
 
+/* Hide Micro.blog's built-in archive category nav (we show categories in the sidebar) */
+.archive_categories { display: none; }
+
 /* ── Post List ───────────────────────────────────────────── */
 .post-list {
   display: flex;
