@@ -25,9 +25,10 @@
       </time>
     </a>
     <a href="{{ .Permalink }}" class="post__permalink">Permalink</a>
-    {{ with .Params.categories -}}
+    {{ $cats := without .Params.categories "Newsletter" }}
+    {{ if $cats -}}
     <span class="post__categories">
-      {{ range . -}}
+      {{ range $cats -}}
       <a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}/" class="p-category">{{ . }}</a>
       {{- end }}
     </span>
