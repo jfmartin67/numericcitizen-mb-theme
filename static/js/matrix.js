@@ -79,7 +79,7 @@
   var frameCount = 0;
 
   function updateOpacity() {
-    canvas.style.opacity = isLightMode() ? '0.35' : '0.144';
+    canvas.style.opacity = isLightMode() ? '0.18' : '0.144';
   }
 
   function init() {
@@ -109,7 +109,7 @@
     // Trail fade — colour matches current background so old characters
     // dissolve naturally in both dark and light mode.
     ctx.fillStyle = isLightMode()
-      ? 'rgba(250,250,250,0.10)'
+      ? 'rgba(250,250,250,0.20)'
       : 'rgba(15,15,15,0.2)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
