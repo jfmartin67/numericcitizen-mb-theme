@@ -423,6 +423,14 @@ body {
   line-height: 1.6;
 }
 
+/* Archive/list: constrain images to thumbnail size */
+.post--list .post__content img {
+  max-height: 180px;
+  width: auto;
+  max-width: 100%;
+  object-fit: cover;
+}
+
 .post__content img {
   max-width: 100%;
   height: auto;

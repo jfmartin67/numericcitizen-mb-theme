@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="post-list">
   {{ range .Paginator.Pages -}}
-  {{ partial "post.html" . }}
+  {{ partial "post-summary.html" . }}
   {{- end }}
 
   {{ if or .Paginator.HasPrev .Paginator.HasNext -}}
