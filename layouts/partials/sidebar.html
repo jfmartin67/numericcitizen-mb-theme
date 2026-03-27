@@ -42,6 +42,20 @@
     </nav>
     {{- end }}
 
+    <!-- Categories -->
+    {{ $cats := .Site.Taxonomies.categories }}
+    {{ if $cats -}}
+    <nav class="sidebar__categories" aria-label="Categories">
+      <span class="sidebar__section-label">Categories</span>
+      {{ range $cats.ByCount -}}
+      <a href="{{ .Page.Permalink }}"{{ if eq $.RelPermalink .Page.RelPermalink }} class="is-active"{{ end }}>
+        {{ .Page.Title }}
+        <span class="sidebar__cat-count">{{ .Count }}</span>
+      </a>
+      {{- end }}
+    </nav>
+    {{- end }}
+
     {{ partial "microhook-footer.html" . }}
 
     <!-- Dark/light mode toggle -->

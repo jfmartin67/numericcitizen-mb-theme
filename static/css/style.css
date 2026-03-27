@@ -175,30 +175,49 @@ body {
 
 .sidebar__about a:hover { color: var(--accent-hover); }
 
-/* Nav & Pages shared link styles */
+/* Nav, Pages & Categories shared link styles */
 .sidebar__nav,
-.sidebar__pages {
+.sidebar__pages,
+.sidebar__categories {
   display: flex;
   flex-direction: column;
   gap: 0.125rem;
 }
 
 .sidebar__nav a,
-.sidebar__pages a {
+.sidebar__pages a,
+.sidebar__categories a {
   font-size: 0.875rem;
   color: var(--text-muted);
   text-decoration: none;
   padding: 0.35rem 0.6rem;
   border-radius: var(--radius);
   transition: color 0.15s, background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .sidebar__nav a:hover,
 .sidebar__pages a:hover,
+.sidebar__categories a:hover,
 .sidebar__nav a.is-active,
-.sidebar__pages a.is-active {
+.sidebar__pages a.is-active,
+.sidebar__categories a.is-active {
   color: var(--text);
   background: var(--bg-surface);
+}
+
+.sidebar__cat-count {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border-radius: 999px;
+  padding: 0.1em 0.45em;
+  min-width: 1.4em;
+  text-align: center;
+  opacity: 0.7;
 }
 
 .sidebar__section-label {
@@ -551,7 +570,8 @@ html.nc-light .theme-toggle__moon { display: block; }
   .sidebar__about  { display: none; }
 
   .sidebar__nav,
-  .sidebar__pages {
+  .sidebar__pages,
+  .sidebar__categories {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 0.125rem;
