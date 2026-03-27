@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="post-list">
+  {{ range .Paginator.Pages -}}
+  {{ partial "post.html" . }}
+  {{- end }}
+
+  {{ if or .Paginator.HasPrev .Paginator.HasNext -}}
+  <nav class="pagination" aria-label="Page navigation">
+    {{ if .Paginator.HasPrev -}}
+    <a href="{{ .Paginator.Prev.URL }}" class="pagination__btn pagination__btn--prev">← Newer</a>
+    {{- end }}
+    {{ if .Paginator.HasNext -}}
+    <a href="{{ .Paginator.Next.URL }}" class="pagination__btn pagination__btn--next">Older →</a>
+    {{- end }}
+  </nav>
+  {{- end }}
+</div>
+{{ end }}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+  <head>
+    {{- partial "head.html" . -}}
+  </head>
+  <body class="nc-theme">
+    <div class="site-wrapper">
+      {{- partial "header.html" . -}}
+      <main id="main-content" class="main-content">
+        {{- block "main" . }}{{ end -}}
+      </main>
+      {{- partial "footer.html" . -}}
+    </div>
+  </body>
+</html>

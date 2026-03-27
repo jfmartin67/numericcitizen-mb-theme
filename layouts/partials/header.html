@@ -1,0 +1,24 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <div class="site-branding">
+      {{ with .Site.Params.avatar -}}
+      <a href="{{ $.Site.BaseURL }}" class="site-avatar-link" aria-hidden="true" tabindex="-1">
+        <img src="{{ . }}" alt="" class="site-avatar u-photo" width="48" height="48">
+      </a>
+      {{- end }}
+      <div class="site-info">
+        <a href="{{ .Site.BaseURL }}" class="site-title">{{ .Site.Title }}</a>
+        {{ with .Site.Params.bio -}}
+        <p class="site-bio">{{ . }}</p>
+        {{- end }}
+      </div>
+    </div>
+    <nav class="site-nav" aria-label="Site navigation">
+      {{ partial "microhook-navigation.html" . }}
+      <a href="{{ .Site.BaseURL }}"{{ if .IsHome }} aria-current="page"{{ end }}>Posts</a>
+      {{ if .Site.Params.show_archive -}}
+      <a href="{{ .Site.BaseURL }}archive/"{{ if eq .RelPermalink "/archive/" }} aria-current="page"{{ end }}>Archive</a>
+      {{- end }}
+    </nav>
+  </div>
+</header>

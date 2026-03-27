@@ -1,0 +1,9 @@
+{
+  "languageCode": "en-us",
+  "paginate": 20,
+  "dateFormatLong": "January 2, 2006",
+  "dateFormatShort": "Jan 2, 2006",
+  "params": {
+    "show_archive": true
+  }
+}
