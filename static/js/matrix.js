@@ -61,7 +61,7 @@
   var frameCount = 0;
 
   function updateOpacity() {
-    canvas.style.opacity = isLightMode() ? '0.05' : '0.144';
+    canvas.style.opacity = isLightMode() ? '0.12' : '0.144';
   }
 
   function init() {
