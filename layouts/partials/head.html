@@ -1,4 +1,8 @@
 <meta charset="utf-8">
+<script>
+  // Apply saved theme immediately to prevent flash
+  (function(){var t=localStorage.getItem('nc-theme');if(t==='light')document.documentElement.classList.add('nc-light');else if(t==='dark')document.documentElement.classList.add('nc-dark');})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} — {{ end }}{{ .Site.Title }}{{ end }}</title>
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.bio }}{{ . }}{{ end }}{{ end }}">
