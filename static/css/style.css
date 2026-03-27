@@ -52,6 +52,8 @@ body {
   min-height: 100vh;
   max-width: 980px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1; /* sit above the canvas (z-index: 0) */
 }
 
 /* ── Sidebar ─────────────────────────────────────────────── */
