@@ -22,7 +22,7 @@
       </time>
     </a>
     <a href="{{ .Permalink }}" class="post__permalink">Permalink</a>
-    {{ $cats := without .Params.categories "Newsletter" }}
+    {{ $cats := slice }}{{ range .Params.categories }}{{ if ne . "Newsletter" }}{{ $cats = $cats | append . }}{{ end }}{{ end }}
     {{ if $cats -}}
     <span class="post__categories">
       {{ range $cats -}}

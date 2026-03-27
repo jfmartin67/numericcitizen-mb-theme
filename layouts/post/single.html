@@ -12,7 +12,7 @@
         {{ .Date.Format "2006-01-02 · 15:04" }}
       </time>
     </a>
-    {{ $cats := without .Params.categories "Newsletter" }}
+    {{ $cats := slice }}{{ range .Params.categories }}{{ if ne . "Newsletter" }}{{ $cats = $cats | append . }}{{ end }}{{ end }}
     {{ if $cats -}}
     <span class="post__categories">
       {{ range $cats -}}
