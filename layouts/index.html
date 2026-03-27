@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $posts := where .Site.RegularPages "Section" "ne" "" }}
+{{ $posts := where (where .Site.RegularPages "Section" "ne" "") "Section" "ne" "replies" }}
 {{ $paginator := .Paginate $posts }}
 <div class="post-list">
   {{ range $paginator.Pages -}}
