@@ -4,7 +4,7 @@
   var CHARS     = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ℕℝℤΔ⊕⊗∇∞≈≠±×÷';
   var COL_WIDTH  = 24;
   var FONT_SIZE  = 14;
-  var FRAME_SKIP = 4;
+  var FRAME_SKIP = 6; // ~10fps (was 4/~15fps, slowed 30%)
 
   function randChar() {
     return CHARS[Math.floor(Math.random() * CHARS.length)];
@@ -18,20 +18,20 @@
   // progress: 1.0 at head, 0.0 at tail.
   function charColor(progress) {
     if (progress > 0.95) {
-      return '#e0f7ff'; // head — near-white
+      return 'rgba(224,247,255,0.80)'; // head — near-white, -20% luminosity
     }
     if (progress > 0.4) {
       var t     = (progress - 0.4) / 0.55;
       var green = Math.round(180 + 75 * t);
-      var alpha = 0.35 + 0.6 * t;
-      return 'rgba(0,' + green + ',255,' + alpha.toFixed(2) + ')'; // bright cyan, fading
+      var alpha = (0.28 + 0.48 * t).toFixed(2); // was 0.35+0.6t, ×0.8
+      return 'rgba(0,' + green + ',255,' + alpha + ')'; // bright cyan, fading
     }
     if (progress > 0.25) {
-      var t2    = (progress - 0.25) / 0.15;
-      var alpha2 = (0.2 + 0.25 * t2).toFixed(2);
+      var t2     = (progress - 0.25) / 0.15;
+      var alpha2 = (0.16 + 0.20 * t2).toFixed(2); // was 0.2+0.25t, ×0.8
       return 'rgba(30,120,220,' + alpha2 + ')'; // mid blue, fading
     }
-    return 'rgba(20,60,160,' + (progress * 0.55).toFixed(2) + ')'; // tail — deep blue
+    return 'rgba(20,60,160,' + (progress * 0.44).toFixed(2) + ')'; // tail — deep blue, ×0.8
   }
 
   // ── Setup ──────────────────────────────────────────────────
@@ -45,7 +45,7 @@
     'width:100%',
     'height:100%',
     'z-index:0',
-    'opacity:0.18',
+    'opacity:0.144', // was 0.18, -20% luminosity
     'pointer-events:none',
   ].join(';');
   document.body.insertBefore(canvas, document.body.firstChild);
