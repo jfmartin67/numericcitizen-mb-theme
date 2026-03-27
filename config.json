@@ -1,8 +1,8 @@
 {
   "languageCode": "en-us",
   "paginate": 20,
-  "dateFormatLong": "January 2, 2006",
-  "dateFormatShort": "Jan 2, 2006",
+  "dateFormatLong": "2006-01-02",
+  "dateFormatShort": "2006-01-02",
   "params": {
     "show_archive": true,
     "avatar": "/images/avatar.png"
