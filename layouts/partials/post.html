@@ -18,7 +18,7 @@
     {{ partial "microhook-post-byline.html" . }}
     <a href="{{ .Permalink }}" class="post__date{{ if not .Title }} u-url{{ end }}" rel="bookmark">
       <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-        {{ .Date.Format "2006-01-02" }}
+        {{ .Date.Format "2006-01-02 · 15:04" }}
       </time>
     </a>
     {{ with .Params.categories -}}
