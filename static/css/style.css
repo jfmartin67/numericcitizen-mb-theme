@@ -158,6 +158,23 @@ body {
   line-height: 1.5;
 }
 
+.sidebar__about {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.sidebar__about > * + * { margin-top: 0.6em; }
+
+.sidebar__about p { margin: 0; }
+
+.sidebar__about a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.sidebar__about a:hover { color: var(--accent-hover); }
+
 /* Nav & Pages shared link styles */
 .sidebar__nav,
 .sidebar__pages {
@@ -530,7 +547,8 @@ html.nc-light .theme-toggle__moon { display: block; }
     height: 40px;
   }
 
-  .sidebar__bio { display: none; }
+  .sidebar__bio    { display: none; }
+  .sidebar__about  { display: none; }
 
   .sidebar__nav,
   .sidebar__pages {
