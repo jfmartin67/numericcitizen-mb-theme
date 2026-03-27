@@ -5,11 +5,13 @@
   </head>
   <body class="nc-theme">
     <div class="site-wrapper">
-      {{- partial "header.html" . -}}
-      <main id="main-content" class="main-content">
-        {{- block "main" . }}{{ end -}}
-      </main>
-      {{- partial "footer.html" . -}}
+      {{- partial "sidebar.html" . -}}
+      <div class="site-main">
+        <main id="main-content" class="main-content">
+          {{- block "main" . }}{{ end -}}
+        </main>
+        {{- partial "footer.html" . -}}
+      </div>
     </div>
   </body>
 </html>
