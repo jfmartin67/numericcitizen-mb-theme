@@ -1,7 +1,5 @@
 {{ define "main" }}
 {{ $posts := where (where .Site.RegularPages "Section" "ne" "") "Section" "ne" "replies" }}
-{{ $newsletter := where $posts "Params.categories" "intersect" (slice "Newsletter") }}
-{{ $posts = complement $newsletter $posts }}
 {{ $paginator := .Paginate $posts 10 }}
 <div class="post-list">
   {{ range $paginator.Pages -}}
