@@ -1,6 +1,6 @@
 {
   "languageCode": "en-us",
-  "paginate": 20,
+  "paginate": 10,
   "dateFormatLong": "2006-01-02 · 15:04",
   "dateFormatShort": "2006-01-02 · 15:04",
   "params": {
