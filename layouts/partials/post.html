@@ -28,6 +28,16 @@
       {{ range .Params.categories -}}{{ if ne . "Newsletter" -}}<a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}/" class="p-category">{{ . }}</a>{{ end }}{{- end }}
     </span>
     {{- end }}
+    {{ if .IsPage -}}
+    <span class="post__replies">
+      {{- with .Site.Params.replyByEmailUrl -}}
+      <a href="{{ . }}" class="post__reply-link">✉ Reply by email</a>
+      {{- end }}
+      {{- with .Site.Params.mastodonUrl -}}
+      <a href="{{ . }}" class="post__reply-link" rel="noopener noreferrer">Reply on Mastodon</a>
+      {{- end }}
+    </span>
+    {{- end }}
   </footer>
 
   {{ partial "microhook-after-post.html" . }}

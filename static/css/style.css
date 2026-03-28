@@ -337,6 +337,21 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
 .post__permalink:hover   { color: var(--accent); }
 .post__permalink:visited { color: var(--text-muted); }
 
+.post__replies {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.post__reply-link {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.post__reply-link:hover   { color: var(--accent); }
+.post__reply-link:visited { color: var(--text-muted); }
+
 @media (prefers-color-scheme: light) {
   .post__date { color: #555; }
 }
