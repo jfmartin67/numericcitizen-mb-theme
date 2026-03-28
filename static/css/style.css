@@ -267,7 +267,7 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
 
 /* ── Post ────────────────────────────────────────────────── */
 .post {
-  padding: 1.75rem 0;
+  padding: 1.4rem 0;
   position: relative;
 }
 
