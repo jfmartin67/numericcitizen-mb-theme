@@ -26,12 +26,6 @@
 
   {{ partial "post-replies.html" . }}
 
-  {{ if .Site.Params.include_conversation }}
-  <script type="text/javascript"
-    src="https://micro.blog/conversation.js?url={{ .Permalink }}">
-  </script>
-  {{ end }}
-
   {{ partial "microhook-after-post.html" . }}
 </article>
 {{ end }}

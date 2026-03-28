@@ -1,0 +1,8 @@
+{{ if .IsPage }}
+{{ if .Site.Params.include_conversation }}
+<script src="https://micro.blog/conversation.js?url={{ .Permalink }}" type="text/javascript"></script>
+{{ end }}
+{{ if .Site.Params.include_reply_by_email }}
+<script src="https://micro.blog/reply.js?url={{ .Permalink }}" type="text/javascript"></script>
+{{ end }}
+{{ end }}
