@@ -53,7 +53,7 @@
       {{ partial "microhook-navigation.html" . }}
       <a href="{{ .Site.BaseURL }}"{{ if .IsHome }} class="is-active"{{ end }}>Posts</a>
       {{ if .Site.Params.show_archive -}}
-      <a href="{{ .Site.BaseURL }}archive/"{{ if eq .RelPermalink "/archive/" }} class="is-active"{{ end }}>Archive</a>
+      <a href="{{ .Site.BaseURL }}archive/"{{ if strings.HasPrefix .RelPermalink "/archive" }} class="is-active"{{ end }}>Archive</a>
       {{- end }}
     </nav>
 
@@ -64,7 +64,7 @@
       {{ range $pages -}}
       <a href="{{ .Permalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="is-active"{{ end }}>{{ .Title }}</a>
       {{- end }}
-      <a href="{{ .Site.BaseURL }}search/"{{ if eq .RelPermalink "/search/" }} class="is-active"{{ end }}>Search</a>
+      <a href="{{ .Site.BaseURL }}search/"{{ if strings.HasPrefix .RelPermalink "/search" }} class="is-active"{{ end }}>Search</a>
     </nav>
 
     <!-- Categories -->
