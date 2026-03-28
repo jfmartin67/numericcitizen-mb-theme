@@ -17,6 +17,9 @@
     </span>
     {{- end }}
   </div>
+  {{ if and .Site.Params.show_reading_time (gt .ReadingTime 1) -}}
+  <p class="post__reading-time">{{ .ReadingTime }} min read</p>
+  {{- end }}
   <div class="post__content e-content">
     {{ .Content }}
   </div>

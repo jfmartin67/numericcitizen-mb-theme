@@ -31,6 +31,7 @@
       {{ if .Site.Params.show_archive -}}
       <a href="{{ .Site.BaseURL }}archive/"{{ if eq .RelPermalink "/archive/" }} class="is-active"{{ end }}>Archive</a>
       {{- end }}
+      <a href="{{ .Site.BaseURL }}search/"{{ if eq .RelPermalink "/search/" }} class="is-active"{{ end }}>Search</a>
     </nav>
 
     <!-- Configured pages (root-level only, excludes blog posts) -->

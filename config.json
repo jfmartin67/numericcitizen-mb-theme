@@ -5,6 +5,7 @@
   "dateFormatShort": "2006-01-02 · 15:04",
   "params": {
     "show_archive": true,
+    "show_reading_time": true,
     "avatar": "/images/avatar.png"
   }
 }
