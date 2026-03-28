@@ -1,36 +1,7 @@
 {{ define "main" }}
 {{ if strings.HasPrefix .RelPermalink "/archive" -}}
-
-{{/* ── Compact archive view ── */}}
-<div class="archive-list">
-  {{ range .Paginator.Pages -}}
-  <div class="archive-entry">
-    <time class="archive-entry__date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 02, 2006" }}</time>
-    <a href="{{ .Permalink }}" class="archive-entry__title">
-      {{- if .Title -}}
-        {{ .Title }}
-      {{- else -}}
-        {{ .Summary | plainify | truncate 100 "…" }}
-      {{- end -}}
-    </a>
-  </div>
-  {{- end }}
-
-  {{ if or .Paginator.HasPrev .Paginator.HasNext -}}
-  <nav class="pagination" aria-label="Page navigation">
-    {{ if .Paginator.HasPrev -}}
-    <a href="{{ .Paginator.Prev.URL }}" class="pagination__btn pagination__btn--prev">← Newer</a>
-    {{- end }}
-    {{ if .Paginator.HasNext -}}
-    <a href="{{ .Paginator.Next.URL }}" class="pagination__btn pagination__btn--next">Older →</a>
-    {{- end }}
-  </nav>
-  {{- end }}
-</div>
-
+{{ partial "archive-compact.html" . }}
 {{- else -}}
-
-{{/* ── Default list view ── */}}
 <div class="post-list">
   {{ range .Paginator.Pages -}}
   {{ partial "post-summary.html" . }}
@@ -47,6 +18,5 @@
   </nav>
   {{- end }}
 </div>
-
 {{- end }}
 {{ end }}

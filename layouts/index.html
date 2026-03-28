@@ -1,4 +1,7 @@
 {{ define "main" }}
+{{ if strings.HasPrefix .RelPermalink "/archive" -}}
+{{ partial "archive-compact.html" . }}
+{{- else -}}
 {{ $posts := where (where .Site.RegularPages "Section" "ne" "") "Section" "ne" "replies" }}
 {{ $paginator := .Paginate $posts 10 }}
 <div class="post-list">
@@ -17,4 +20,5 @@
   </nav>
   {{- end }}
 </div>
+{{- end }}
 {{ end }}
