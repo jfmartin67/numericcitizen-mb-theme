@@ -450,7 +450,8 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
 /* Archive/list: constrain images to thumbnail size */
 .post--list .post__content img,
 .p-summary img,
-.media-gallery img {
+.media-gallery img,
+.h-feed .h-entry img {
   max-height: 200px;
   width: auto;
   max-width: 100%;
