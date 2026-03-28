@@ -24,7 +24,7 @@
         {{ .Date.Format "2006-01-02 · 15:04" }}
       </time>
     </a>
-    <a href="{{ .Permalink }}" class="post__permalink">Permalink</a>
+    <a href="{{ .Permalink }}" class="post__permalink">(Permalink)</a>
     {{ $showCats := false }}{{ range .Params.categories }}{{ if ne . "Newsletter" }}{{ $showCats = true }}{{ end }}{{ end }}
     {{ if $showCats -}}
     <span class="post__categories">
