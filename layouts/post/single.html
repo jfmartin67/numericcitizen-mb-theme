@@ -24,6 +24,17 @@
     {{ .Content }}
   </div>
 
+  <footer class="post__footer">
+    <span class="post__replies">
+      {{- with .Site.Params.replyByEmailUrl -}}
+      <a href="{{ . }}" class="post__reply-link">✉ Reply by email</a>
+      {{- end }}
+      {{- with .Site.Params.mastodonUrl -}}
+      <a href="{{ . }}" class="post__reply-link" rel="noopener noreferrer">Reply on Mastodon</a>
+      {{- end }}
+    </span>
+  </footer>
+
   {{ partial "microhook-after-post.html" . }}
 </article>
 {{ end }}
