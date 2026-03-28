@@ -45,6 +45,25 @@
   });
 }());
 
+/* ── Archive nav active state ──────────────────────────── */
+/* Micro.blog renders /archive/ using the home page template, so Hugo
+   outputs Posts as is-active. Fix it client-side via the URL. */
+(function () {
+  'use strict';
+
+  if (!window.location.pathname.startsWith('/archive')) return;
+
+  var nav = document.querySelector('.sidebar__nav');
+  if (!nav) return;
+
+  nav.querySelectorAll('a.is-active').forEach(function (a) {
+    a.classList.remove('is-active');
+  });
+
+  var archiveLink = nav.querySelector('a[href*="/archive/"]');
+  if (archiveLink) archiveLink.classList.add('is-active');
+}());
+
 /* ── Theme toggle ──────────────────────────────────────── */
 (function () {
   'use strict';
