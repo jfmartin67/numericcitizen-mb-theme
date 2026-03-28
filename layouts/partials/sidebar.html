@@ -51,18 +51,22 @@
     <!-- Navigation -->
     <nav class="sidebar__nav" aria-label="Site navigation">
       {{ partial "microhook-navigation.html" . }}
-      <a href="{{ .Site.BaseURL }}"{{ if .IsHome }} class="is-active"{{ end }}>Posts</a>
+      <a href="{{ .Site.BaseURL }}"{{ if and .IsHome (not (strings.HasPrefix .RelPermalink "/archive")) }} class="is-active"{{ end }}>Posts</a>
       {{ if .Site.Params.show_archive -}}
       <a href="{{ .Site.BaseURL }}archive/"{{ if strings.HasPrefix .RelPermalink "/archive" }} class="is-active"{{ end }}>Archive</a>
       {{- end }}
     </nav>
 
-    <!-- Configured pages (root-level only, excludes blog posts) + Search -->
+    <!-- Configured pages (root-level only, excludes built-in archive/search) + Search -->
     {{ $pages := where (where .Site.Pages "Kind" "page") "Section" "" }}
+    {{ $hasPages := false }}
+    {{ range $pages }}{{ if and (not (strings.HasPrefix .RelPermalink "/archive")) (not (strings.HasPrefix .RelPermalink "/search")) }}{{ $hasPages = true }}{{ end }}{{ end }}
     <nav class="sidebar__pages" aria-label="Pages">
       <span class="sidebar__section-label">Pages</span>
       {{ range $pages -}}
+      {{ if and (not (strings.HasPrefix .RelPermalink "/archive")) (not (strings.HasPrefix .RelPermalink "/search")) -}}
       <a href="{{ .Permalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="is-active"{{ end }}>{{ .Title }}</a>
+      {{- end }}
       {{- end }}
       <a href="{{ .Site.BaseURL }}search/"{{ if strings.HasPrefix .RelPermalink "/search" }} class="is-active"{{ end }}>Search</a>
     </nav>
