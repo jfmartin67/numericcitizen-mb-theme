@@ -1,11 +1,9 @@
 {{ define "main" }}
 <article class="h-entry post post--single">
   {{ partial "microhook-before-post.html" . }}
-
   {{ if .Title -}}
   <h1 class="post__title p-name">{{ .Title }}</h1>
   {{- end }}
-
   <div class="post__meta">
     <a href="{{ .Permalink }}" class="post__date u-url" rel="bookmark">
       <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
@@ -19,11 +17,14 @@
     </span>
     {{- end }}
   </div>
-
   <div class="post__content e-content">
     {{ .Content }}
   </div>
-
   {{ partial "microhook-after-post.html" . }}
 </article>
+
+<script type="text/javascript"
+  src="https://micro.blog/conversation.js?url={{ .Permalink }}">
+</script>
+
 {{ end }}
