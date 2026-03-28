@@ -52,7 +52,7 @@
     <nav class="sidebar__nav" aria-label="Site navigation">
       {{ partial "microhook-navigation.html" . }}
       <a href="{{ .Site.BaseURL }}"{{ if and .IsHome (not (strings.HasPrefix .RelPermalink "/archive")) }} class="is-active"{{ end }}>Posts</a>
-      {{ if .Site.Params.show_archive -}}
+      {{ if .Site.GetPage "/archive" -}}
       <a href="{{ .Site.BaseURL }}archive/"{{ if strings.HasPrefix .RelPermalink "/archive" }} class="is-active"{{ end }}>Archive</a>
       {{- end }}
     </nav>
