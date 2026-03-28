@@ -3,4 +3,5 @@
 {{ if templates.Exists "partials/reply-by-email.html" }}{{ partial "reply-by-email.html" . }}{{ end }}
 {{ if templates.Exists "partials/reply-on-mastodon.html" }}{{ partial "reply-on-mastodon.html" . }}{{ end }}
 <script src="https://micro.blog/conversation.js?url={{ .Permalink }}"></script>
+<script src="https://micro.blog/reply.js?url={{ .Permalink }}"></script>
 {{ end }}
