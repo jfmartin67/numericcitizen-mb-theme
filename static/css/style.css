@@ -337,13 +337,23 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
 .post__permalink:hover   { color: var(--accent); }
 .post__permalink:visited { color: var(--text-muted); }
 
+.post__footer--replies {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
 .post__replies {
   display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
+  gap: 1.5rem;
 }
 
 .post__reply-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.8125rem;
   color: var(--text-muted);
   text-decoration: none;
