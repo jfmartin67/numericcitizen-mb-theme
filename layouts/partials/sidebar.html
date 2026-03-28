@@ -1,5 +1,29 @@
-<aside class="sidebar" aria-label="Site sidebar">
-  <div class="sidebar__inner">
+<aside class="sidebar" id="site-sidebar" aria-label="Site sidebar">
+
+  <!-- Mobile-only top bar: mini brand + hamburger button -->
+  <div class="sidebar__topbar">
+    <div class="sidebar__topbar-brand">
+      {{ with .Site.Params.avatar -}}
+      <a href="{{ $.Site.BaseURL }}" class="sidebar__topbar-avatar-link" aria-hidden="true" tabindex="-1">
+        <img src="{{ . }}" alt="" class="sidebar__topbar-avatar" width="32" height="32">
+      </a>
+      {{- end }}
+      <a href="{{ .Site.BaseURL }}" class="sidebar__topbar-title">{{ .Site.Title }}</a>
+    </div>
+    <button class="sidebar__hamburger" id="sidebar-hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar-panel">
+      <svg class="sidebar__hamburger-icon sidebar__hamburger-icon--menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+      <svg class="sidebar__hamburger-icon sidebar__hamburger-icon--close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="sidebar__inner" id="sidebar-panel">
 
     <!-- Branding -->
     <div class="sidebar__branding">
@@ -31,19 +55,17 @@
       {{ if .Site.Params.show_archive -}}
       <a href="{{ .Site.BaseURL }}archive/"{{ if eq .RelPermalink "/archive/" }} class="is-active"{{ end }}>Archive</a>
       {{- end }}
-      <a href="{{ .Site.BaseURL }}search/"{{ if eq .RelPermalink "/search/" }} class="is-active"{{ end }}>Search</a>
     </nav>
 
-    <!-- Configured pages (root-level only, excludes blog posts) -->
+    <!-- Configured pages (root-level only, excludes blog posts) + Search -->
     {{ $pages := where (where .Site.Pages "Kind" "page") "Section" "" }}
-    {{ if $pages -}}
     <nav class="sidebar__pages" aria-label="Pages">
       <span class="sidebar__section-label">Pages</span>
       {{ range $pages -}}
       <a href="{{ .Permalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="is-active"{{ end }}>{{ .Title }}</a>
       {{- end }}
+      <a href="{{ .Site.BaseURL }}search/"{{ if eq .RelPermalink "/search/" }} class="is-active"{{ end }}>Search</a>
     </nav>
-    {{- end }}
 
     <!-- Categories -->
     {{ $cats := .Site.Taxonomies.categories }}

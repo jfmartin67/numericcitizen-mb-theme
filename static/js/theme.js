@@ -1,3 +1,51 @@
+/* ── Hamburger menu ────────────────────────────────────── */
+(function () {
+  'use strict';
+
+  var hamburger = document.getElementById('sidebar-hamburger');
+  if (!hamburger) return;
+
+  var sidebar  = document.getElementById('site-sidebar');
+  var backdrop = document.createElement('div');
+  backdrop.className = 'sidebar__backdrop';
+  document.body.appendChild(backdrop);
+
+  function openMenu() {
+    sidebar.classList.add('sidebar--open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.setAttribute('aria-label', 'Close navigation menu');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    sidebar.classList.remove('sidebar--open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Open navigation menu');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', function () {
+    if (sidebar.classList.contains('sidebar--open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  backdrop.addEventListener('click', closeMenu);
+
+  // Close on nav link click (navigating away)
+  sidebar.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+}());
+
+/* ── Theme toggle ──────────────────────────────────────── */
 (function () {
   'use strict';
 
