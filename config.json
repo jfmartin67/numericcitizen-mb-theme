@@ -5,8 +5,6 @@
   "dateFormatShort": "2006-01-02 · 15:04",
   "params": {
     "show_archive": true,
-    "avatar": "/images/avatar.png",
-    "replyByEmailUrl": "mailto:hello@numericcitizen.me",
-    "mastodonUrl": "https://micro.blog/numericcitizen"
+    "avatar": "/images/avatar.png"
   }
 }
