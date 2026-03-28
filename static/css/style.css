@@ -497,6 +497,40 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   margin-top: 0.5rem;
 }
 
+/* ── Archive List ────────────────────────────────────────── */
+.archive-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.archive-entry {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.archive-entry:last-of-type { border-bottom: none; }
+
+.archive-entry__date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.archive-entry__title {
+  font-size: 0.9rem;
+  color: var(--text);
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.archive-entry__title:hover   { color: var(--accent); }
+.archive-entry__title:visited { color: var(--accent-visited); }
+
 /* ── Pagination ──────────────────────────────────────────── */
 .pagination {
   display: flex;
