@@ -6,6 +6,7 @@
   <h1 class="post__title p-name">{{ .Title }}</h1>
   {{- end }}
 
+  {{ if not (strings.HasPrefix .RelPermalink "/search") -}}
   <div class="post__meta">
     <a href="{{ .Permalink }}" class="post__date u-url" rel="bookmark">
       <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
@@ -20,6 +21,7 @@
     </span>
     {{- end }}
   </div>
+  {{- end }}
 
   {{ if and .Site.Params.show_reading_time (gt .ReadingTime 1) -}}
   <p class="post__reading-time">{{ .ReadingTime }} min read</p>

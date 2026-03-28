@@ -564,6 +564,7 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   padding: 2rem 0 1.25rem;
   border-top: 1px solid var(--border);
   margin-top: auto;
+  text-align: center;
 }
 
 .site-footer__content {
