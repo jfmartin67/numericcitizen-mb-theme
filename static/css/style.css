@@ -808,3 +808,32 @@ html.nc-light .theme-toggle__moon { display: block; }
     max-width: 100%;
   }
 }
+
+/* ── Lightbox ────────────────────────────────────────────── */
+.post__content img:not(.photos-grid-item) {
+  cursor: zoom-in;
+}
+
+.nc-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.88);
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.nc-lightbox--open {
+  display: flex;
+}
+
+.nc-lightbox__img {
+  max-width: 92vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+  cursor: zoom-out;
+}

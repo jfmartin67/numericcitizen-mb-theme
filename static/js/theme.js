@@ -64,6 +64,48 @@
   if (archiveLink) archiveLink.classList.add('is-active');
 }());
 
+/* ── Image lightbox ─────────────────────────────────────── */
+(function () {
+  'use strict';
+
+  var overlay = document.createElement('div');
+  overlay.className = 'nc-lightbox';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Full-size image');
+
+  var lightboxImg = document.createElement('img');
+  lightboxImg.className = 'nc-lightbox__img';
+  overlay.appendChild(lightboxImg);
+  document.body.appendChild(overlay);
+
+  function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    overlay.classList.add('nc-lightbox--open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    overlay.classList.remove('nc-lightbox--open');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+  }
+
+  overlay.addEventListener('click', closeLightbox);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  document.querySelectorAll('.post__content img').forEach(function (img) {
+    if (img.closest('a')) return; // already a link — skip
+    img.addEventListener('click', function () {
+      openLightbox(img.src, img.alt);
+    });
+  });
+}());
+
 /* ── Theme toggle ──────────────────────────────────────── */
 (function () {
   'use strict';
