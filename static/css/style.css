@@ -275,9 +275,10 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   content: '';
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  border-radius: 2px;
   background: linear-gradient(to right, transparent, var(--accent) 50%, transparent);
 }
 
