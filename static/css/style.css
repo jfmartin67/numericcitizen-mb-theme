@@ -268,7 +268,18 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
 /* ── Post ────────────────────────────────────────────────── */
 .post {
   padding: 1.75rem 0;
-  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.post::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent) 50%, transparent);
+  opacity: 0.5;
 }
 
 .post:first-child { padding-top: 0.25rem; }
