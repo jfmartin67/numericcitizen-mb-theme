@@ -68,7 +68,9 @@
       <a href="{{ .Permalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="is-active"{{ end }}>{{ .Title }}</a>
       {{- end }}
       {{- end }}
+      {{ if .Site.GetPage "/search" -}}
       <a href="{{ .Site.BaseURL }}search/"{{ if strings.HasPrefix .RelPermalink "/search" }} class="is-active"{{ end }}>Search</a>
+      {{- end }}
     </nav>
 
     <!-- Categories -->
