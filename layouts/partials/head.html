@@ -22,6 +22,19 @@
 
 <link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css?v={{ .Site.Data.version | default "0.9.21" }}">
 
+<!-- Micro.blog plugin stylesheets -->
+{{ range .Site.Params.plugins_css -}}
+<link rel="stylesheet" href="{{ . }}">
+{{- end }}
+
+<!-- Micro.blog plugin HTML partials -->
+{{ range $filename := .Site.Params.plugins_html -}}
+{{ partial $filename $ }}
+{{- end }}
+
+<!-- Micro.blog custom CSS (Design → Edit CSS) -->
+<link rel="stylesheet" href="{{ "custom.css" | relURL }}?{{ .Site.Params.theme_seconds }}">
+
 {{ with .Site.Params.favicon -}}
 <link rel="icon" href="{{ . }}">
 {{- end }}
