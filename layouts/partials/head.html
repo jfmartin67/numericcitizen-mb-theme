@@ -20,7 +20,13 @@
 <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}feed.xml">
 <link rel="alternate" type="application/json" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}feed.json">
 
-<link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css?v={{ .Site.Data.version | default "0.9.21" }}">
+<!-- IndieWeb identity -->
+{{ with .Site.Params.mastodon_url }}<link rel="me" href="{{ . }}">
+{{ end -}}
+{{ with .Site.Params.bluesky_url }}<link rel="me" href="{{ . }}">
+{{ end }}
+
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css?v={{ .Site.Data.version | default "0.10.1" }}">
 
 <!-- Micro.blog plugin stylesheets -->
 {{ range .Site.Params.plugins_css -}}

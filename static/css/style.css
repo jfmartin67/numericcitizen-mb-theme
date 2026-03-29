@@ -324,7 +324,7 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
 .post__date {
   font-family: var(--font-sans);
   font-size: 0.8125rem;
-  color: #777;
+  color: var(--text-muted);
   text-decoration: none;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
@@ -349,9 +349,6 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
 }
 
 
-@media (prefers-color-scheme: light) {
-  .post__date { color: #555; }
-}
 
 .post__categories {
   display: flex;

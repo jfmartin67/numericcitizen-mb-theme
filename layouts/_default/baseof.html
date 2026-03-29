@@ -4,7 +4,7 @@
     {{- partial "head.html" . -}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
   </head>
-  <body class="nc-theme">
+  <body>
     <div class="site-wrapper">
       {{- partial "sidebar.html" . -}}
       <div class="site-main">
@@ -14,7 +14,7 @@
         {{- partial "footer.html" . -}}
       </div>
     </div>
-  <script src="{{ .Site.BaseURL }}js/theme.js?v={{ .Site.Data.version | default "0.9.21" }}"></script>
-  <script src="{{ .Site.BaseURL }}js/matrix.js?v={{ .Site.Data.version | default "0.9.21" }}"></script>
+  <script src="{{ .Site.BaseURL }}js/theme.js?v={{ .Site.Data.version | default "0.10.1" }}"></script>
+  <script src="{{ .Site.BaseURL }}js/matrix.js?v={{ .Site.Data.version | default "0.10.1" }}"></script>
   </body>
 </html>

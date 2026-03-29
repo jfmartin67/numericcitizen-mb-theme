@@ -6,6 +6,8 @@
   "params": {
     "show_archive": true,
     "show_reading_time": true,
-    "avatar": "/images/avatar.png"
+    "avatar": "/images/avatar.png",
+    "mastodon_url": "https://techhub.social/@numericcitizen",
+    "bluesky_url": "https://bsky.app/profile/numericcitizen.me"
   }
 }
