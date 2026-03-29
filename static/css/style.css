@@ -488,6 +488,24 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   height: auto;
   border-radius: var(--radius);
   display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post__content video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: var(--radius);
+}
+
+.post__content iframe {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
 }
 
 .post__content figure { margin: 1.5em 0; }
