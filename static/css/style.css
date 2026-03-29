@@ -207,7 +207,8 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   transition: color 0.15s, background 0.15s;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 0.5rem;
 }
 
 .sidebar__nav a:hover,
@@ -229,6 +230,7 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   padding: 0.1em 0.45em;
   min-width: 1.4em;
   text-align: center;
+  margin-left: auto;
   opacity: 0.7;
 }
 
