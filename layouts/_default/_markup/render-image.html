@@ -1,5 +1,16 @@
+{{- if .Text -}}
+<div class="nc-image-wrap">
+  <img src="{{ .Destination | safeURL }}"
+    alt="{{ .Text }}"
+    {{- with .Title }} title="{{ . }}"{{ end }}
+    loading="lazy"
+    decoding="async">
+  <span class="nc-image-caption" aria-hidden="true">{{ .Text }}</span>
+</div>
+{{- else -}}
 <img src="{{ .Destination | safeURL }}"
-  alt="{{ .Text }}"
+  alt=""
   {{- with .Title }} title="{{ . }}"{{ end }}
   loading="lazy"
   decoding="async">
+{{- end }}

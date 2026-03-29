@@ -514,6 +514,44 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   margin-top: 0.5rem;
 }
 
+/* ── Image alt-text hover caption ───────────────────────── */
+.post__content .nc-image-wrap {
+  position: relative;
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.post__content .nc-image-wrap img {
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  border-radius: 0; /* parent clips */
+}
+
+.nc-image-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.62);
+  color: #fff;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  padding: 0.35rem 0.75rem;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.nc-image-wrap:hover .nc-image-caption {
+  opacity: 1;
+}
+
 /* ── Archive List ────────────────────────────────────────── */
 .archive-list {
   display: flex;
