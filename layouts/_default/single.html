@@ -9,6 +9,7 @@
   {{ if not (strings.HasPrefix .RelPermalink "/search") -}}
   <div class="post__meta">
     <a href="{{ .Permalink }}" class="post__date u-url" rel="bookmark">
+      <i class="fa-regular fa-calendar" aria-hidden="true"></i>
       <time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
         {{ .Date.Format "2006-01-02 · 15:04" }}
       </time>
@@ -24,7 +25,7 @@
   {{- end }}
 
   {{ if and .Site.Params.show_reading_time (gt .ReadingTime 1) -}}
-  <p class="post__reading-time">{{ .ReadingTime }} min read</p>
+  <p class="post__reading-time"><i class="fa-regular fa-clock" aria-hidden="true"></i> {{ .ReadingTime }} min read</p>
   {{- end }}
   <div class="post__content e-content">
     {{- if not .Title -}}

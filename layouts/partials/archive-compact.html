@@ -15,10 +15,10 @@
   {{ if or .Paginator.HasPrev .Paginator.HasNext -}}
   <nav class="pagination" aria-label="Page navigation">
     {{ if .Paginator.HasPrev -}}
-    <a href="{{ .Paginator.Prev.URL }}" class="pagination__btn pagination__btn--prev">← Newer</a>
+    <a href="{{ .Paginator.Prev.URL }}" class="pagination__btn pagination__btn--prev"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i> Newer</a>
     {{- end }}
     {{ if .Paginator.HasNext -}}
-    <a href="{{ .Paginator.Next.URL }}" class="pagination__btn pagination__btn--next">Older →</a>
+    <a href="{{ .Paginator.Next.URL }}" class="pagination__btn pagination__btn--next">Older <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
     {{- end }}
   </nav>
   {{- end }}
