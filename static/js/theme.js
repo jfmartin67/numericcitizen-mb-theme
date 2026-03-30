@@ -106,6 +106,30 @@
   });
 }());
 
+/* ── Image alt-text caption (raw HTML <img> tags) ──────── */
+/* The Hugo render hook handles Markdown images; this covers
+   raw HTML images that bypass the render hook. */
+(function () {
+  'use strict';
+
+  document.querySelectorAll('.post__content img').forEach(function (img) {
+    if (img.closest('.nc-image-wrap')) return; // already handled by render hook
+    var alt = img.getAttribute('alt');
+    if (!alt || !alt.trim()) return;
+
+    var wrap = document.createElement('div');
+    wrap.className = 'nc-image-wrap';
+    img.parentNode.insertBefore(wrap, img);
+    wrap.appendChild(img);
+
+    var caption = document.createElement('span');
+    caption.className = 'nc-image-caption';
+    caption.setAttribute('aria-hidden', 'true');
+    caption.textContent = alt;
+    wrap.appendChild(caption);
+  });
+}());
+
 /* ── Theme toggle ──────────────────────────────────────── */
 (function () {
   'use strict';
