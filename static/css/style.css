@@ -37,6 +37,7 @@
   --accent-hover:    #3395ff;
   --accent-visited:  #3d6fa8;
   --radius:          6px;
+  --image-radius:    var(--radius); /* override in custom.css to change only image corners */
   --sidebar-width:   220px;
   --content-max:     660px;
   --font-sans:       'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -476,14 +477,14 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   width: auto;
   max-width: 100%;
   height: auto;
-  border-radius: var(--radius);
+  border-radius: var(--image-radius);
   display: block;
 }
 
 .post__content img {
   max-width: 100%;
   height: auto;
-  border-radius: var(--radius);
+  border-radius: var(--image-radius);
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -495,7 +496,7 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   display: block;
   margin-left: auto;
   margin-right: auto;
-  border-radius: var(--radius);
+  border-radius: var(--image-radius);
 }
 
 .post__content iframe {
@@ -521,7 +522,7 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  border-radius: var(--radius);
+  border-radius: var(--image-radius);
   overflow: hidden;
 }
 
@@ -888,7 +889,7 @@ html.nc-light .theme-toggle__moon { display: block; }
   max-width: 92vw;
   max-height: 92vh;
   object-fit: contain;
-  border-radius: 6px;
+  border-radius: var(--image-radius);
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
   cursor: zoom-out;
 }
