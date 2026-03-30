@@ -45,6 +45,20 @@
   });
 }());
 
+/* ── Archive content view ───────────────────────────────── */
+/* Micro.blog serves /archive/ using the same HTML as the homepage.
+   Swap the posts view for the archive list based on the URL. */
+(function () {
+  'use strict';
+
+  if (!window.location.pathname.startsWith('/archive')) return;
+
+  var postsView   = document.getElementById('nc-posts-view');
+  var archiveView = document.getElementById('nc-archive-view');
+  if (postsView)   postsView.hidden  = true;
+  if (archiveView) archiveView.hidden = false;
+}());
+
 /* ── Archive nav active state ──────────────────────────── */
 /* Micro.blog renders /archive/ using the home page template, so Hugo
    outputs Posts as is-active. Fix it client-side via the URL. */
