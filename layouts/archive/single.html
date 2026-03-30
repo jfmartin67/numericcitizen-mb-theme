@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{- $posts := where (where .Site.RegularPages "Section" "ne" "") "Section" "ne" "replies" | sort "Date" "desc" -}}
+{{- $posts := where (where .Site.RegularPages "Section" "ne" "") "Section" "ne" "replies" -}}
 <div class="archive-list">
   {{- range $posts }}
   <div class="archive-entry">
