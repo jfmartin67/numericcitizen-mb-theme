@@ -1,9 +1,4 @@
 {{ define "main" }}
-{{- if strings.HasPrefix .RelPermalink "/archive" -}}
-{{- $posts := where (where .Site.RegularPages "Section" "ne" "") "Section" "ne" "replies" -}}
-{{- $_ := .Paginate $posts -}}
-{{ partial "archive-compact.html" . }}
-{{- else -}}
 <article class="h-entry post post--single">
   {{ partial "microhook-before-post.html" . }}
 
@@ -41,6 +36,5 @@
 
   {{ partial "microhook-after-post.html" . }}
 </article>
-{{- end }}
 
 {{ end }}
