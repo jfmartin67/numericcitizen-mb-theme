@@ -78,6 +78,37 @@
   if (archiveLink) archiveLink.classList.add('is-active');
 }());
 
+/* ── Photos content view ────────────────────────────────── */
+/* Micro.blog serves /photos/ using the same HTML as the homepage.
+   Swap the posts view for the photos grid based on the URL. */
+(function () {
+  'use strict';
+
+  if (!window.location.pathname.startsWith('/photos')) return;
+
+  var postsView  = document.getElementById('nc-posts-view');
+  var photosView = document.getElementById('nc-photos-view');
+  if (postsView)  postsView.hidden  = true;
+  if (photosView) photosView.hidden = false;
+}());
+
+/* ── Photos nav active state ────────────────────────────── */
+(function () {
+  'use strict';
+
+  if (!window.location.pathname.startsWith('/photos')) return;
+
+  var nav = document.querySelector('.sidebar__nav');
+  if (!nav) return;
+
+  nav.querySelectorAll('a.is-active').forEach(function (a) {
+    a.classList.remove('is-active');
+  });
+
+  var photosLink = nav.querySelector('a[href*="/photos/"]');
+  if (photosLink) photosLink.classList.add('is-active');
+}());
+
 /* ── Image lightbox ─────────────────────────────────────── */
 (function () {
   'use strict';

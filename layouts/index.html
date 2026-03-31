@@ -35,4 +35,34 @@
   </div>
   {{ end }}
 </div>
+
+{{/* Photos view — hidden by default, shown on /photos/ by JS */}}
+<div id="nc-photos-view" class="photos-page" hidden>
+  <div class="photos-page__header">
+    <h1 class="photos-page__title">Photos</h1>
+    <div class="photos-segmented" role="group" aria-label="Layout mode">
+      <button class="photos-segmented__btn is-active" data-layout="grid" aria-pressed="true">Grid</button>
+      <button class="photos-segmented__btn" data-layout="masonry" aria-pressed="false">Masonry</button>
+    </div>
+  </div>
+  {{- $hasPhotos := false -}}
+  {{- range $posts }}{{- if .Params.photos }}{{- $hasPhotos = true }}{{- end }}{{- end -}}
+  {{ if $hasPhotos }}
+  <div class="photos-grid" id="photos-grid" role="list">
+    {{ range $posts }}
+    {{- if .Params.photos -}}
+    {{ $post := . }}
+    {{ range .Params.photos }}
+    <a href="{{ $post.Permalink }}" class="photos-grid__item" role="listitem"
+       aria-label="View post containing this photo">
+      <img src="{{ . }}" alt="" class="photos-grid-item" loading="lazy" decoding="async">
+    </a>
+    {{ end }}
+    {{- end }}
+    {{ end }}
+  </div>
+  {{ else }}
+  <p class="photos-page__empty">No photos yet. Photos will appear here once you publish posts containing images.</p>
+  {{ end }}
+</div>
 {{ end }}
