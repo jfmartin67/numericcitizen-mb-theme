@@ -3,12 +3,15 @@
   Photos page — photos/single.html
   Fallback for when Micro.blog renders /photos/ as a single page (type: photos).
   No .Paginate (not supported on single pages) — shows all photos.
-  .Params.photos_with_metadata → []{ url, width, height }  (preferred)
-  .Params.photos               → []string                  (fallback)
+  Uses .Params.photos ([]string of photo URLs).
 */}}
-{{ $photoPosts := where .Site.RegularPages "Params.photos_with_metadata" "ne" nil }}
-{{ if not $photoPosts }}
-  {{ $photoPosts = where .Site.RegularPages "Params.photos" "ne" nil }}
+
+{{/* Build slice of posts that have photos */}}
+{{ $photoPosts := slice }}
+{{ range .Site.RegularPages }}
+  {{ if .Params.photos }}
+    {{ $photoPosts = $photoPosts | append . }}
+  {{ end }}
 {{ end }}
 
 <div class="photos-page">
@@ -22,31 +25,14 @@
 
   {{ if $photoPosts }}
   <div class="photos-grid" id="photos-grid" role="list">
-    {{ $i := 0 }}
     {{ range $photoPosts }}
-      {{ $post := . }}
-      {{ if .Params.photos_with_metadata }}
-        {{ range .Params.photos_with_metadata }}
-          {{ $thumb := printf "https://cdn.micro.blog/photos/600x/%s" (path.Base .url) }}
-          <a href="{{ $post.Permalink }}" class="photos-grid__item" role="listitem"
-             aria-label="View post containing this photo">
-            <img src="{{ $thumb }}" alt="" class="photos-grid-item"
-              {{- if lt $i 9 }}loading="eager"{{- else }}loading="lazy"{{- end }}
-              decoding="async" width="600" height="600">
-          </a>
-          {{ $i = add $i 1 }}
-        {{ end }}
-      {{ else if .Params.photos }}
-        {{ range .Params.photos }}
-          <a href="{{ $post.Permalink }}" class="photos-grid__item" role="listitem"
-             aria-label="View post containing this photo">
-            <img src="{{ . }}" alt="" class="photos-grid-item"
-              {{- if lt $i 9 }}loading="eager"{{- else }}loading="lazy"{{- end }}
-              decoding="async">
-          </a>
-          {{ $i = add $i 1 }}
-        {{ end }}
-      {{ end }}
+    {{ $post := . }}
+    {{ range .Params.photos }}
+    <a href="{{ $post.Permalink }}" class="photos-grid__item" role="listitem"
+       aria-label="View post containing this photo">
+      <img src="{{ . }}" alt="" class="photos-grid-item" loading="lazy" decoding="async">
+    </a>
+    {{ end }}
     {{ end }}
   </div>
   {{ else }}
