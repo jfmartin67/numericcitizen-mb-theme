@@ -512,7 +512,7 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
 /* Feed: cap tall portrait images so they don't dominate the timeline */
 .post-list .post__content img {
   max-height: 500px;
-  object-fit: cover;
+  width: auto;
 }
 
 .post__content img {
