@@ -1,0 +1,80 @@
+/* ============================================================
+   Numeric Citizen — Custom CSS
+   Theme overrides and personal styles go here.
+   These rules load after style.css and take full precedence.
+
+   Version : 0.11.5
+   Date    : 2026-03-31
+   Docs    : Design Tokens → https://github.com/jfmartin67/numericcitizen-mb-theme#design-tokens
+   ============================================================ */
+
+
+/* ── Design Tokens ───────────────────────────────────────────
+   Uncomment and change any value to override the theme default.
+   Dark-mode values are shown; light-mode variants follow below.
+   ----------------------------------------------------------- */
+/*
+:root {
+  --bg:              #0f0f0f;   /* Page background              */
+  --bg-surface:      #1a1a1a;   /* Cards, code blocks, sidebar  */
+  --border:          #2a2a2a;   /* Dividers and borders         */
+  --text:            #e2e2e2;   /* Primary text                 */
+  --text-muted:      #888;      /* Dates, metadata, labels      */
+
+  --accent:          #007aff;   /* Links and interactive colour */
+  --accent-hover:    #3395ff;   /* Link hover state             */
+  --accent-visited:  #3d6fa8;   /* Visited links                */
+
+  --radius:          6px;       /* Base border radius           */
+  --image-radius:    6px;       /* Image corners (separate from --radius) */
+
+  --sidebar-width:   220px;     /* Desktop sidebar width        */
+  --content-max:     660px;     /* Max width of content column  */
+
+  --font-sans:       'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-heading:    'Manrope', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono:       ui-monospace, "SF Mono", "Cascadia Mono", "Fira Code", monospace;
+}
+*/
+
+/* Light-mode overrides (if you want different accent colours in light mode):
+:root:not(.nc-dark) {
+  --accent:         #007aff;
+  --accent-hover:   #005ecb;
+  --accent-visited: #1a4d88;
+}
+*/
+
+
+/* ── Common Snippets ─────────────────────────────────────────
+   Copy any block below and remove the comment markers to use.
+   ----------------------------------------------------------- */
+
+/* Disable the Matrix background animation:
+#matrix-canvas { display: none; }
+*/
+
+/* Square image corners (keeps cards rounded):
+:root { --image-radius: 0px; }
+*/
+
+/* Wider content column:
+:root { --content-max: 740px; }
+*/
+
+/* Wider sidebar:
+:root { --sidebar-width: 260px; }
+*/
+
+/* Custom accent colour:
+:root {
+  --accent:         #ff6600;
+  --accent-hover:   #e05500;
+  --accent-visited: #b84400;
+}
+*/
+
+
+/* ── Your Rules ──────────────────────────────────────────────
+   Add any site-specific styles below this line.
+   ----------------------------------------------------------- */
