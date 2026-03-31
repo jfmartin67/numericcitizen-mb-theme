@@ -489,6 +489,8 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
 }
 
 .post__content video {
@@ -523,12 +525,16 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
   border-radius: var(--image-radius);
   overflow: hidden;
 }
 
 .post__content .nc-image-wrap img {
   display: block;
+  margin-top: 0;
+  margin-bottom: 0;
   margin-left: 0;
   margin-right: 0;
   border-radius: 0; /* parent clips */
