@@ -65,7 +65,8 @@
       <span class="sidebar__section-label"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Pages</span>
       {{ range $pages -}}
       {{ if and (not (strings.HasPrefix .RelPermalink "/archive")) (not (strings.HasPrefix .RelPermalink "/search")) -}}
-      <a href="{{ .Permalink }}"{{ if eq $.RelPermalink .RelPermalink }} class="is-active"{{ end }}>{{ .Title }}</a>
+      {{ $extURL := "" }}{{ with .Params.redirect }}{{ if strings.HasPrefix . "http" }}{{ $extURL = . }}{{ end }}{{ end }}
+      <a href="{{ if $extURL }}{{ $extURL }}{{ else }}{{ .Permalink }}{{ end }}"{{ if $extURL }} target="_blank" rel="noopener noreferrer"{{ end }}{{ if eq $.RelPermalink .RelPermalink }} class="is-active"{{ end }}>{{ .Title }}{{ if $extURL }}<i class="fa-solid fa-arrow-up-right-from-square sidebar__external-icon" aria-hidden="true"></i>{{ end }}</a>
       {{- end }}
       {{- end }}
       {{ if .Site.GetPage "/search" -}}

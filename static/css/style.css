@@ -236,6 +236,17 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   margin-left: auto;
 }
 
+.sidebar__external-icon {
+  font-size: 0.6rem;
+  margin-left: auto;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.sidebar__pages a:hover .sidebar__external-icon {
+  opacity: 0.9;
+}
+
 .sidebar__section-label {
   font-size: 0.7rem;
   font-weight: 600;
