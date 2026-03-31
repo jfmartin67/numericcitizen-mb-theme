@@ -55,9 +55,6 @@
       {{ if .Site.GetPage "/archive" -}}
       <a href="{{ .Site.BaseURL }}archive/"{{ if strings.HasPrefix .RelPermalink "/archive" }} class="is-active"{{ end }}><i class="fa-solid fa-box-archive" aria-hidden="true"></i> Archive</a>
       {{- end }}
-      {{ if .Site.GetPage "/photos" -}}
-      <a href="{{ .Site.BaseURL }}photos/"{{ if strings.HasPrefix .RelPermalink "/photos" }} class="is-active"{{ end }}><i class="fa-solid fa-images" aria-hidden="true"></i> Photos</a>
-      {{- end }}
     </nav>
 
     <!-- Configured pages (root-level only, excludes built-in archive/search) + Search -->

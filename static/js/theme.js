@@ -98,14 +98,16 @@
 
   if (!window.location.pathname.startsWith('/photos')) return;
 
-  var nav = document.querySelector('.sidebar__nav');
-  if (!nav) return;
+  var sidebar = document.getElementById('site-sidebar');
+  if (!sidebar) return;
 
-  nav.querySelectorAll('a.is-active').forEach(function (a) {
+  // Remove is-active from Posts (set server-side on homepage HTML)
+  sidebar.querySelectorAll('.sidebar__nav a.is-active').forEach(function (a) {
     a.classList.remove('is-active');
   });
 
-  var photosLink = nav.querySelector('a[href*="/photos/"]');
+  // Add is-active to the Photos link wherever it lives (Pages section)
+  var photosLink = sidebar.querySelector('a[href*="/photos/"]');
   if (photosLink) photosLink.classList.add('is-active');
 }());
 
