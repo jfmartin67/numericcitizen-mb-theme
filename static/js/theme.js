@@ -175,3 +175,34 @@
     }
   });
 }());
+
+/* ── Photos grid layout toggle ──────────────────────────── */
+(function () {
+  'use strict';
+  var grid = document.getElementById('photos-grid');
+  if (!grid) return;
+
+  var btns = document.querySelectorAll('.photos-segmented__btn');
+  var KEY  = 'nc-photos-layout';
+
+  function setLayout(mode) {
+    grid.classList.toggle('photos-grid--masonry', mode === 'masonry');
+    btns.forEach(function (btn) {
+      var active = btn.getAttribute('data-layout') === mode;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    try { localStorage.setItem(KEY, mode); } catch (e) {}
+  }
+
+  /* restore saved preference */
+  var saved;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  if (saved === 'masonry' || saved === 'grid') setLayout(saved);
+
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      setLayout(btn.getAttribute('data-layout'));
+    });
+  });
+}());
