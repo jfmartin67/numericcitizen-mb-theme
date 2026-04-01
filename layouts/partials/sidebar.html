@@ -82,7 +82,8 @@
       {{ $seenCats := slice }}
       {{ range $cats.ByCount -}}
         {{ $slug := .Page.Title | urlize }}
-        {{ if and (ne .Page.Title "Newsletter") (not (in $seenCats $slug)) -}}
+        {{ $isPlaceholder := strings.HasPrefix .Page.Title "? " }}
+        {{ if and (ne .Page.Title "Newsletter") (not $isPlaceholder) (not (in $seenCats $slug)) -}}
           {{ $seenCats = $seenCats | append $slug }}
           <a href="{{ .Page.Permalink }}"{{ if eq $.RelPermalink .Page.RelPermalink }} class="is-active"{{ end }}>
             {{ .Page.Title }}
