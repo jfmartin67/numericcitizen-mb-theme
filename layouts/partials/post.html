@@ -29,10 +29,11 @@
       {{ range .Params.categories -}}
         {{ if ne . "Newsletter" -}}
           {{ $slug := . | urlize }}
-          {{ $displayName := . }}
+          {{ $displayName := strings.TrimPrefix "? " . }}
           {{ range $.Site.Taxonomies.categories.ByCount }}
-            {{ if and (eq (.Name | urlize) $slug) (not (strings.HasPrefix .Name "? ")) }}
-              {{ $displayName = .Name | title }}
+            {{ $clean := strings.TrimPrefix "? " .Page.Title }}
+            {{ if and (eq (.Page.Title | urlize) $slug) (gt (len $clean) (len $displayName)) }}
+              {{ $displayName = $clean }}
             {{ end }}
           {{ end }}
           <a href="{{ $.Site.BaseURL }}categories/{{ $slug }}/" class="p-category">{{ $displayName }}</a>
