@@ -26,17 +26,13 @@
     {{ $showCats := false }}{{ range .Params.categories }}{{ if ne . "Newsletter" }}{{ $showCats = true }}{{ end }}{{ end }}
     {{ if $showCats -}}
     <span class="post__categories">
+      {{ $catNames := dict }}
+      {{ with $.Site.Data.categoryNames }}{{ $catNames = . }}{{ end }}
       {{ range .Params.categories -}}
         {{ if ne . "Newsletter" -}}
           {{ $slug := . | urlize }}
-          {{ $displayName := strings.TrimPrefix "? " . }}
-          {{ range $.Site.Taxonomies.categories.ByCount }}
-            {{ $clean := strings.TrimPrefix "? " .Page.Title }}
-            {{ if and (eq (.Page.Title | urlize) $slug) (gt (len $clean) (len $displayName)) }}
-              {{ $displayName = $clean }}
-            {{ end }}
-          {{ end }}
-          <a href="{{ $.Site.BaseURL }}categories/{{ $slug }}/" class="p-category">{{ $displayName }}</a>
+          {{ $label := index $catNames $slug | default (strings.TrimPrefix "? " .) }}
+          <a href="{{ $.Site.BaseURL }}categories/{{ $slug }}/" class="p-category">{{ $label }}</a>
         {{- end }}
       {{- end }}
     </span>

@@ -79,30 +79,22 @@
     {{ if $cats -}}
     <nav class="sidebar__categories" aria-label="Categories">
       <span class="sidebar__section-label"><i class="fa-solid fa-tags" aria-hidden="true"></i> Categories</span>
-      {{/* Build slug → best title map: strip leading "? ", prefer longer result (emoji version) */}}
-      {{ $bestTitle := dict }}
+      {{/* Optional display name overrides: data/category-names.json, keyed by URL slug */}}
+      {{ $catNames := dict }}
+      {{ with $.Site.Data.categoryNames }}{{ $catNames = . }}{{ end }}
+      {{/* Deduplicate by slug */}}
+      {{ $seenCats := slice }}
       {{ range $cats.ByCount -}}
         {{ if ne .Page.Title "Newsletter" -}}
           {{ $slug := .Page.Title | urlize }}
-          {{ $clean := strings.TrimPrefix "? " .Page.Title }}
-          {{ $existing := index $bestTitle $slug }}
-          {{ if or (not $existing) (gt (len $clean) (len $existing)) -}}
-            {{ $bestTitle = merge $bestTitle (dict $slug $clean) }}
+          {{ if not (in $seenCats $slug) -}}
+            {{ $seenCats = $seenCats | append $slug }}
+            {{ $label := index $catNames $slug | default (strings.TrimPrefix "? " .Page.Title) }}
+            <a href="{{ .Page.Permalink }}"{{ if eq $.RelPermalink .Page.RelPermalink }} class="is-active"{{ end }}>
+              {{ $label }}
+              <span class="sidebar__cat-count">{{ .Count }}</span>
+            </a>
           {{- end }}
-        {{- end }}
-      {{- end }}
-      {{/* Render in ByCount order, one entry per slug using the best title */}}
-      {{ $seenCats := slice }}
-      {{ range $cats.ByCount -}}
-        {{ $slug := .Page.Title | urlize }}
-        {{ $clean := strings.TrimPrefix "? " .Page.Title }}
-        {{ $best := index $bestTitle $slug }}
-        {{ if and (eq $clean $best) (not (in $seenCats $slug)) -}}
-          {{ $seenCats = $seenCats | append $slug }}
-          <a href="{{ .Page.Permalink }}"{{ if eq $.RelPermalink .Page.RelPermalink }} class="is-active"{{ end }}>
-            {{ $best }}
-            <span class="sidebar__cat-count">{{ .Count }}</span>
-          </a>
         {{- end }}
       {{- end }}
     </nav>
