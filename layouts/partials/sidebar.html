@@ -79,12 +79,17 @@
     {{ if $cats -}}
     <nav class="sidebar__categories" aria-label="Categories">
       <span class="sidebar__section-label"><i class="fa-solid fa-tags" aria-hidden="true"></i> Categories</span>
-      {{ range $cats.ByCount -}}{{ if ne .Page.Title "Newsletter" -}}
-      <a href="{{ .Page.Permalink }}"{{ if eq $.RelPermalink .Page.RelPermalink }} class="is-active"{{ end }}>
-        {{ .Page.Title }}
-        <span class="sidebar__cat-count">{{ .Count }}</span>
-      </a>
-      {{- end }}{{- end }}
+      {{ $seenCats := slice }}
+      {{ range $cats.ByCount -}}
+        {{ $slug := .Page.Title | urlize }}
+        {{ if and (ne .Page.Title "Newsletter") (not (in $seenCats $slug)) -}}
+          {{ $seenCats = $seenCats | append $slug }}
+          <a href="{{ .Page.Permalink }}"{{ if eq $.RelPermalink .Page.RelPermalink }} class="is-active"{{ end }}>
+            {{ .Page.Title }}
+            <span class="sidebar__cat-count">{{ .Count }}</span>
+          </a>
+        {{- end }}
+      {{- end }}
     </nav>
     {{- end }}
 
