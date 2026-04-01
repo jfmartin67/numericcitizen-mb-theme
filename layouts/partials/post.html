@@ -26,15 +26,7 @@
     {{ $showCats := false }}{{ range .Params.categories }}{{ if ne . "Newsletter" }}{{ $showCats = true }}{{ end }}{{ end }}
     {{ if $showCats -}}
     <span class="post__categories">
-      {{ $catNames := dict }}
-      {{ with $.Site.Data.categoryNames }}{{ $catNames = . }}{{ end }}
-      {{ range .Params.categories -}}
-        {{ if ne . "Newsletter" -}}
-          {{ $slug := . | urlize }}
-          {{ $label := index $catNames $slug | default (strings.TrimPrefix "? " .) }}
-          <a href="{{ $.Site.BaseURL }}categories/{{ $slug }}/" class="p-category">{{ $label }}</a>
-        {{- end }}
-      {{- end }}
+      {{ range .Params.categories -}}{{ if ne . "Newsletter" -}}<a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}/" class="p-category">{{ . }}</a>{{ end }}{{- end }}
     </span>
     {{- end }}
   </footer>
