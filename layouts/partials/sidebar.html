@@ -79,22 +79,28 @@
     {{ if $cats -}}
     <nav class="sidebar__categories" aria-label="Categories">
       <span class="sidebar__section-label"><i class="fa-solid fa-tags" aria-hidden="true"></i> Categories</span>
-      {{/* Pass 1: collect slugs that have a clean (non-"?") term name */}}
-      {{ $cleanSlugs := slice }}
+      {{/* Build a map of slug → best display name (prefer non-"?" over "?") */}}
+      {{ $bestName := dict }}
       {{ range $cats.ByCount -}}
-        {{ if and (ne .Name "newsletter") (not (strings.HasPrefix .Name "? ")) -}}
-          {{ $cleanSlugs = $cleanSlugs | append (.Name | urlize) }}
+        {{ if ne .Name "newsletter" -}}
+          {{ $slug := .Name | urlize }}
+          {{ $existing := index $bestName $slug }}
+          {{ if not $existing -}}
+            {{ $bestName = merge $bestName (dict $slug .Name) }}
+          {{- else if and (strings.HasPrefix $existing "? ") (not (strings.HasPrefix .Name "? ")) -}}
+            {{ $bestName = merge $bestName (dict $slug .Name) }}
+          {{- end }}
         {{- end }}
       {{- end }}
-      {{/* Pass 2: render, skipping "?" entries only when a clean version exists */}}
+      {{/* Render in ByCount order, one entry per slug using the best name */}}
       {{ $seenCats := slice }}
       {{ range $cats.ByCount -}}
         {{ $slug := .Name | urlize }}
-        {{ $isRedundant := and (strings.HasPrefix .Name "? ") (in $cleanSlugs $slug) }}
-        {{ if and (ne .Name "newsletter") (not $isRedundant) (not (in $seenCats $slug)) -}}
+        {{ $best := index $bestName $slug }}
+        {{ if and (eq .Name $best) (not (in $seenCats $slug)) -}}
           {{ $seenCats = $seenCats | append $slug }}
           <a href="{{ .Page.Permalink }}"{{ if eq $.RelPermalink .Page.RelPermalink }} class="is-active"{{ end }}>
-            {{ .Name | title }}
+            {{ $best | title }}
             <span class="sidebar__cat-count">{{ .Count }}</span>
           </a>
         {{- end }}
