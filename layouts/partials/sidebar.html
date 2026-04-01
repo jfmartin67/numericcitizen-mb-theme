@@ -79,22 +79,22 @@
     {{ if $cats -}}
     <nav class="sidebar__categories" aria-label="Categories">
       <span class="sidebar__section-label"><i class="fa-solid fa-tags" aria-hidden="true"></i> Categories</span>
-      {{/* Pass 1: collect slugs that have a clean (non-"?") title */}}
+      {{/* Pass 1: collect slugs that have a clean (non-"?") term name */}}
       {{ $cleanSlugs := slice }}
       {{ range $cats.ByCount -}}
-        {{ if and (ne .Page.Title "Newsletter") (not (strings.HasPrefix .Page.Title "? ")) -}}
-          {{ $cleanSlugs = $cleanSlugs | append (.Page.Title | urlize) }}
+        {{ if and (ne .Name "newsletter") (not (strings.HasPrefix .Name "? ")) -}}
+          {{ $cleanSlugs = $cleanSlugs | append (.Name | urlize) }}
         {{- end }}
       {{- end }}
       {{/* Pass 2: render, skipping "?" entries only when a clean version exists */}}
       {{ $seenCats := slice }}
       {{ range $cats.ByCount -}}
-        {{ $slug := .Page.Title | urlize }}
-        {{ $isRedundant := and (strings.HasPrefix .Page.Title "? ") (in $cleanSlugs $slug) }}
-        {{ if and (ne .Page.Title "Newsletter") (not $isRedundant) (not (in $seenCats $slug)) -}}
+        {{ $slug := .Name | urlize }}
+        {{ $isRedundant := and (strings.HasPrefix .Name "? ") (in $cleanSlugs $slug) }}
+        {{ if and (ne .Name "newsletter") (not $isRedundant) (not (in $seenCats $slug)) -}}
           {{ $seenCats = $seenCats | append $slug }}
           <a href="{{ .Page.Permalink }}"{{ if eq $.RelPermalink .Page.RelPermalink }} class="is-active"{{ end }}>
-            {{ .Page.Title }}
+            {{ .Name | title }}
             <span class="sidebar__cat-count">{{ .Count }}</span>
           </a>
         {{- end }}

@@ -26,7 +26,18 @@
     {{ $showCats := false }}{{ range .Params.categories }}{{ if ne . "Newsletter" }}{{ $showCats = true }}{{ end }}{{ end }}
     {{ if $showCats -}}
     <span class="post__categories">
-      {{ range .Params.categories -}}{{ if ne . "Newsletter" -}}<a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}/" class="p-category">{{ . }}</a>{{ end }}{{- end }}
+      {{ range .Params.categories -}}
+        {{ if ne . "Newsletter" -}}
+          {{ $slug := . | urlize }}
+          {{ $displayName := . }}
+          {{ range $.Site.Taxonomies.categories.ByCount }}
+            {{ if and (eq (.Name | urlize) $slug) (not (strings.HasPrefix .Name "? ")) }}
+              {{ $displayName = .Name | title }}
+            {{ end }}
+          {{ end }}
+          <a href="{{ $.Site.BaseURL }}categories/{{ $slug }}/" class="p-category">{{ $displayName }}</a>
+        {{- end }}
+      {{- end }}
     </span>
     {{- end }}
   </footer>
