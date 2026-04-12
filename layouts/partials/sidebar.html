@@ -57,14 +57,15 @@
       {{- end }}
     </nav>
 
-    <!-- Configured pages (root-level only, excludes built-in archive/search) + Search -->
+    <!-- Configured pages (root-level only, excludes built-in archive/search + any nav_exclude_pages) + Search -->
     {{ $pages := where (where .Site.Pages "Kind" "page") "Section" "" }}
+    {{ $navExclude := .Site.Params.nav_exclude_pages | default slice }}
     {{ $hasPages := false }}
-    {{ range $pages }}{{ if and (not (strings.HasPrefix .RelPermalink "/archive")) (not (strings.HasPrefix .RelPermalink "/search")) }}{{ $hasPages = true }}{{ end }}{{ end }}
+    {{ range $pages }}{{ if and (not (strings.HasPrefix .RelPermalink "/archive")) (not (strings.HasPrefix .RelPermalink "/search")) (not (in $navExclude .RelPermalink)) }}{{ $hasPages = true }}{{ end }}{{ end }}
     <nav class="sidebar__pages" aria-label="Pages">
       <span class="sidebar__section-label"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Pages</span>
       {{ range $pages -}}
-      {{ if and (not (strings.HasPrefix .RelPermalink "/archive")) (not (strings.HasPrefix .RelPermalink "/search")) -}}
+      {{ if and (not (strings.HasPrefix .RelPermalink "/archive")) (not (strings.HasPrefix .RelPermalink "/search")) (not (in $navExclude .RelPermalink)) -}}
       {{ $extURL := "" }}{{ with .Params.redirect }}{{ if strings.HasPrefix . "http" }}{{ $extURL = . }}{{ end }}{{ end }}
       <a href="{{ if $extURL }}{{ $extURL }}{{ else }}{{ .Permalink }}{{ end }}"{{ if $extURL }} target="_blank" rel="noopener noreferrer"{{ end }}{{ if eq $.RelPermalink .RelPermalink }} class="is-active"{{ end }}>{{ .Title }}{{ if $extURL }}<i class="fa-solid fa-arrow-up-right-from-square sidebar__external-icon" aria-hidden="true"></i>{{ end }}</a>
       {{- end }}
