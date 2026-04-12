@@ -75,7 +75,7 @@
 */
 
 /* Space above the Micro.blog conversation section:
-.microblog_conversation { margin-top: 50px; }
+.microblog_conversation { margin-top: 50px !important; }
 */
 
 
@@ -85,5 +85,5 @@
 
 /* Space above the Micro.blog conversation section */
 .microblog_conversation {
-  margin-top: 50px;
+  margin-top: 50px !important;
 }

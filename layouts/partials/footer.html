@@ -17,7 +17,7 @@
   <p class="site-footer__credit">
     <a href="{{ .Site.BaseURL }}" class="h-card u-url p-name">{{ .Site.Title }}</a>
     &middot; Powered by <a href="https://micro.blog" rel="noopener noreferrer">Micro.blog</a>
-    {{ with os.ReadFile "plugin.json" | transform.Unmarshal -}}
+    {{ with .Site.Data.theme -}}
     &middot; Theme v{{ .version }}
     {{- end }}
   </p>
