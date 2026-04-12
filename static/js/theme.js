@@ -210,6 +210,7 @@
 }());
 
 /* ── Photos grid layout toggle ──────────────────────────── */
+/* Handles the theme's own photos view (index.html JS-swap path). */
 (function () {
   'use strict';
   var grid = document.getElementById('photos-grid');
@@ -229,6 +230,86 @@
   }
 
   /* restore saved preference */
+  var saved;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  if (saved === 'masonry' || saved === 'grid') setLayout(saved);
+
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      setLayout(btn.getAttribute('data-layout'));
+    });
+  });
+}());
+
+/* ── Native Micro.blog photos page enhancement ───────────── */
+/* When a blog has many photos, Micro.blog serves its own     */
+/* photos template (bare <a><img> pairs) instead of routing   */
+/* /photos/ to the homepage HTML. Inject the theme's          */
+/* photos-page wrapper, header, and Grid/Masonry control.     */
+(function () {
+  'use strict';
+
+  if (!window.location.pathname.startsWith('/photos')) return;
+
+  /* The index.html JS-swap path already handles this case.   */
+  if (document.getElementById('nc-photos-view')) return;
+
+  var main = document.getElementById('main-content');
+  if (!main) return;
+
+  /* Collect anchor elements wrapping images (photo tiles).   */
+  var anchors = Array.prototype.filter.call(
+    main.querySelectorAll('a'),
+    function (a) { return !!a.querySelector('img'); }
+  );
+  if (!anchors.length) return;
+
+  /* Build photos-page wrapper with header + segmented control */
+  var page = document.createElement('div');
+  page.className = 'photos-page';
+  page.innerHTML =
+    '<div class="photos-page__header">' +
+      '<h1 class="photos-page__title">Photos</h1>' +
+      '<div class="photos-segmented" role="group" aria-label="Layout mode">' +
+        '<button class="photos-segmented__btn is-active" data-layout="grid" aria-pressed="true">Grid</button>' +
+        '<button class="photos-segmented__btn" data-layout="masonry" aria-pressed="false">Masonry</button>' +
+      '</div>' +
+    '</div>';
+
+  /* Build grid and move existing anchors into it.            */
+  var grid = document.createElement('div');
+  grid.className = 'photos-grid';
+  grid.id = 'photos-grid';
+  grid.setAttribute('role', 'list');
+
+  anchors.forEach(function (a) {
+    a.classList.add('photos-grid__item');
+    a.setAttribute('role', 'listitem');
+    a.setAttribute('aria-label', 'View post containing this photo');
+    var img = a.querySelector('img');
+    if (img) img.classList.add('photos-grid-item');
+    grid.appendChild(a);
+  });
+
+  page.appendChild(grid);
+  main.innerHTML = '';
+  main.appendChild(page);
+
+  /* Wire up layout toggle (the earlier IIFE returned early    */
+  /* because #photos-grid didn't exist at that point).         */
+  var btns = page.querySelectorAll('.photos-segmented__btn');
+  var KEY  = 'nc-photos-layout';
+
+  function setLayout(mode) {
+    grid.classList.toggle('photos-grid--masonry', mode === 'masonry');
+    btns.forEach(function (btn) {
+      var active = btn.getAttribute('data-layout') === mode;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    try { localStorage.setItem(KEY, mode); } catch (e) {}
+  }
+
   var saved;
   try { saved = localStorage.getItem(KEY); } catch (e) {}
   if (saved === 'masonry' || saved === 'grid') setLayout(saved);
