@@ -74,8 +74,8 @@
 }
 */
 
-/* Bottom padding on single post content (before Micro.blog conversation):
-.post--single .post__content { padding-bottom: 50px; }
+/* Space above the Micro.blog conversation section:
+.microblog_conversation { margin-top: 50px; }
 */
 
 
@@ -83,7 +83,7 @@
    Add any site-specific styles below this line.
    ----------------------------------------------------------- */
 
-/* Extra breathing room before the Micro.blog conversation section */
-.post--single .post__content {
-  padding-bottom: 50px;
+/* Space above the Micro.blog conversation section */
+.microblog_conversation {
+  margin-top: 50px;
 }
