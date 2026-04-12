@@ -78,3 +78,8 @@
 /* ── Your Rules ──────────────────────────────────────────────
    Add any site-specific styles below this line.
    ----------------------------------------------------------- */
+
+/* Extra breathing room before the Micro.blog conversation section */
+.post--single .post__content {
+  padding-bottom: 50px;
+}
