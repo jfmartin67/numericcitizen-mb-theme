@@ -74,8 +74,8 @@
 }
 */
 
-/* Space above the Micro.blog conversation section:
-.microblog_conversation { margin-top: 50px !important; }
+/* Space between end of single post and the Micro.blog conversation section:
+article.post--single { margin-bottom: 50px; }
 */
 
 
@@ -83,7 +83,7 @@
    Add any site-specific styles below this line.
    ----------------------------------------------------------- */
 
-/* Space above the Micro.blog conversation section */
-.microblog_conversation {
-  margin-top: 50px !important;
+/* Space between the end of a single post and the Micro.blog conversation section */
+article.post--single {
+  margin-bottom: 50px;
 }
