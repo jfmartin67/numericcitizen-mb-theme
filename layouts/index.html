@@ -23,16 +23,19 @@
 {{/* Archive view — hidden by default, shown on /archive/ by JS */}}
 <div id="nc-archive-view" class="archive-list" hidden>
   {{ range $posts }}
+  {{- $text := .Summary | plainify | strings.TrimSpace -}}
+  {{- if or .Title $text -}}
   <div class="archive-entry">
     <time class="archive-entry__date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "Jan 02, 2006" }}</time>
     <a href="{{ .Permalink }}" class="archive-entry__title">
       {{- if .Title -}}
         {{ .Title }}
       {{- else -}}
-        {{ .Summary | plainify | truncate 100 "…" }}
+        {{ $text | truncate 100 "…" }}
       {{- end -}}
     </a>
   </div>
+  {{- end }}
   {{ end }}
 </div>
 
