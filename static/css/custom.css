@@ -74,6 +74,10 @@
 }
 */
 
+/* Bottom padding on single post content (before Micro.blog conversation):
+.post--single .post__content { padding-bottom: 50px; }
+*/
+
 
 /* ── Your Rules ──────────────────────────────────────────────
    Add any site-specific styles below this line.
