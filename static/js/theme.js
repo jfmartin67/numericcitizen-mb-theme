@@ -209,6 +209,47 @@
   });
 }());
 
+/* ── Masonry column utilities ───────────────────────────── */
+/* Distribute items into column wrappers in round-robin order */
+/* so reading left-to-right across columns matches source     */
+/* (reverse-chronological) order, not top-to-bottom per col. */
+function ncBuildMasonry(grid, colCount) {
+  var items = Array.prototype.filter.call(grid.children, function (el) {
+    return el.classList.contains('photos-grid__item');
+  });
+  if (!items.length) return;
+
+  var cols = [];
+  for (var i = 0; i < colCount; i++) {
+    var col = document.createElement('div');
+    col.className = 'masonry-col';
+    cols.push(col);
+    grid.appendChild(col);
+  }
+  items.forEach(function (item, idx) {
+    cols[idx % colCount].appendChild(item);
+  });
+}
+
+function ncTeardownMasonry(grid) {
+  var cols = Array.prototype.filter.call(grid.children, function (el) {
+    return el.classList.contains('masonry-col');
+  });
+  if (!cols.length) return;
+
+  /* Interleave items from columns to restore original source order */
+  var frag = document.createDocumentFragment();
+  var maxLen = 0;
+  cols.forEach(function (c) { if (c.children.length > maxLen) maxLen = c.children.length; });
+  for (var i = 0; i < maxLen; i++) {
+    cols.forEach(function (col) {
+      if (col.children[0]) frag.appendChild(col.children[0]);
+    });
+  }
+  cols.forEach(function (col) { grid.removeChild(col); });
+  grid.appendChild(frag);
+}
+
 /* ── Photos grid layout toggle ──────────────────────────── */
 /* Handles the theme's own photos view (index.html JS-swap path). */
 (function () {
@@ -219,8 +260,20 @@
   var btns = document.querySelectorAll('.photos-segmented__btn');
   var KEY  = 'nc-photos-layout';
 
+  function colCount() { return window.innerWidth <= 700 ? 2 : 3; }
+
   function setLayout(mode) {
-    grid.classList.toggle('photos-grid--masonry', mode === 'masonry');
+    if (mode === 'masonry') {
+      if (!grid.classList.contains('photos-grid--masonry')) {
+        grid.classList.add('photos-grid--masonry');
+        ncBuildMasonry(grid, colCount());
+      }
+    } else {
+      if (grid.classList.contains('photos-grid--masonry')) {
+        ncTeardownMasonry(grid);
+        grid.classList.remove('photos-grid--masonry');
+      }
+    }
     btns.forEach(function (btn) {
       var active = btn.getAttribute('data-layout') === mode;
       btn.classList.toggle('is-active', active);
@@ -228,6 +281,18 @@
     });
     try { localStorage.setItem(KEY, mode); } catch (e) {}
   }
+
+  /* Rebuild masonry columns on resize to keep correct column count */
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (grid.classList.contains('photos-grid--masonry')) {
+        ncTeardownMasonry(grid);
+        ncBuildMasonry(grid, colCount());
+      }
+    }, 150);
+  });
 
   /* restore saved preference */
   var saved;
@@ -300,8 +365,20 @@
   var btns = page.querySelectorAll('.photos-segmented__btn');
   var KEY  = 'nc-photos-layout';
 
+  function colCount() { return window.innerWidth <= 700 ? 2 : 3; }
+
   function setLayout(mode) {
-    grid.classList.toggle('photos-grid--masonry', mode === 'masonry');
+    if (mode === 'masonry') {
+      if (!grid.classList.contains('photos-grid--masonry')) {
+        grid.classList.add('photos-grid--masonry');
+        ncBuildMasonry(grid, colCount());
+      }
+    } else {
+      if (grid.classList.contains('photos-grid--masonry')) {
+        ncTeardownMasonry(grid);
+        grid.classList.remove('photos-grid--masonry');
+      }
+    }
     btns.forEach(function (btn) {
       var active = btn.getAttribute('data-layout') === mode;
       btn.classList.toggle('is-active', active);
@@ -309,6 +386,18 @@
     });
     try { localStorage.setItem(KEY, mode); } catch (e) {}
   }
+
+  /* Rebuild masonry columns on resize to keep correct column count */
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (grid.classList.contains('photos-grid--masonry')) {
+        ncTeardownMasonry(grid);
+        ncBuildMasonry(grid, colCount());
+      }
+    }, 150);
+  });
 
   var saved;
   try { saved = localStorage.getItem(KEY); } catch (e) {}

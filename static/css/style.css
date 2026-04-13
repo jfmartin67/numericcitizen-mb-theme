@@ -1039,16 +1039,21 @@ html.nc-light .theme-toggle__moon { display: block; }
   }
 }
 
-/* Masonry mode — CSS columns (cross-browser, no JS needed) */
+/* Masonry mode — JS-built column wrappers preserve source order */
 .photos-grid--masonry {
-  display: block;
-  columns: 3;
-  column-gap: 4px;
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.masonry-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .photos-grid--masonry .photos-grid__item {
-  break-inside: avoid;
-  margin-bottom: 4px;
   aspect-ratio: unset;
   border-radius: var(--image-radius);
 }
@@ -1056,10 +1061,4 @@ html.nc-light .theme-toggle__moon { display: block; }
 .photos-grid--masonry .photos-grid__item img {
   height: auto;
   object-fit: unset;
-}
-
-@media (max-width: 700px) {
-  .photos-grid--masonry {
-    columns: 2;
-  }
 }
