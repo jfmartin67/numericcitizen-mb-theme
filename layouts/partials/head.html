@@ -27,6 +27,7 @@
 {{ end }}
 
 <link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css?v={{ .Site.Data.version | default "0.11.4" }}">
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/custom.css?v={{ .Site.Data.theme.version | default "0.11.4" }}">
 
 <!-- Micro.blog plugin stylesheets -->
 {{ range .Site.Params.plugins_css -}}
