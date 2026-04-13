@@ -389,6 +389,7 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
 .post--single .post__title { font-family: var(--font-heading); font-size: 1.7rem; }
 .post--single .post__meta  { margin-bottom: 1.5rem; }
 .post--single::after       { content: none; }
+article.post--single       { margin-bottom: var(--conversation-gap, 50px); }
 
 /* Micro posts (no title) — tighter vertical rhythm */
 .post--micro {
