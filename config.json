@@ -5,7 +5,7 @@
   "dateFormatShort": "2006-01-02 · 15:04",
   "params": {
     "nav_exclude_pages": ["/about/", "/404.html"],
-    "show_archive": true,
+    "show_archive": false,
     "show_reading_time": true,
     "avatar": "/images/avatar.png",
     "mastodon_url": "https://techhub.social/@numericcitizen",
