@@ -6,7 +6,7 @@
   <h1 class="post__title p-name">{{ .Title }}</h1>
   {{- end }}
 
-  {{ if not (strings.HasPrefix .RelPermalink "/search") -}}
+  {{ if and (not (strings.HasPrefix .RelPermalink "/search")) .Params.date -}}
   <div class="post__meta">
     <a href="{{ .Permalink }}" class="post__date u-url" rel="bookmark">
       <i class="fa-regular fa-calendar" aria-hidden="true"></i>
