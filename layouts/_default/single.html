@@ -17,7 +17,9 @@
     {{ with .Params.categories -}}
     <span class="post__categories">
       {{ range . -}}
-      <a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}/" class="p-category">{{ . }}</a>
+      {{ $cat := . }}{{ with $.Site.GetPage (printf "/categories/%s" $cat) -}}
+      <a href="{{ .Permalink }}" class="p-category">{{ $cat }}</a>
+      {{- end }}
       {{- end }}
     </span>
     {{- end }}

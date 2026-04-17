@@ -14,7 +14,7 @@
     {{ $showCats := false }}{{ range .Params.categories }}{{ if ne . "Newsletter" }}{{ $showCats = true }}{{ end }}{{ end }}
     {{ if $showCats -}}
     <span class="post__categories">
-      {{ range .Params.categories -}}{{ if ne . "Newsletter" -}}<a href="{{ $.Site.BaseURL }}categories/{{ . | urlize }}/" class="p-category">{{ . }}</a>{{ end }}{{- end }}
+      {{ range .Params.categories -}}{{ if ne . "Newsletter" -}}{{ $cat := . }}{{ with $.Site.GetPage (printf "/categories/%s" $cat) -}}<a href="{{ .Permalink }}" class="p-category">{{ $cat }}</a>{{- end }}{{ end }}{{- end }}
     </span>
     {{- end }}
   </div>
