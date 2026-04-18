@@ -30,6 +30,7 @@
 :root {
   --bg:              #0f0f0f;
   --bg-surface:      #1a1a1a;
+  --sidebar-bg:      #080808;
   --border:          #2a2a2a;
   --text:            #e2e2e2;
   --text-muted:      #888;
@@ -49,6 +50,7 @@
   :root:not(.nc-dark) {
     --bg:          #fafafa;
     --bg-surface:  #f3f3f3;
+    --sidebar-bg:  #ececec;
     --border:      #e0e0e0;
     --text:        #1a1a1a;
     --text-muted:  #666;
@@ -62,6 +64,7 @@
 html.nc-light {
   --bg:             #fafafa;
   --bg-surface:     #f3f3f3;
+  --sidebar-bg:     #ececec;
   --border:         #e0e0e0;
   --text:           #1a1a1a;
   --text-muted:     #666;
@@ -73,6 +76,7 @@ html.nc-light {
 html.nc-dark {
   --bg:          #0f0f0f;
   --bg-surface:  #1a1a1a;
+  --sidebar-bg:  #080808;
   --border:      #2a2a2a;
   --text:        #e2e2e2;
   --text-muted:  #888;
@@ -120,6 +124,7 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   top: 0;
   height: 100vh;
   overflow-y: auto;
+  background: var(--sidebar-bg);
   border-right: 1px solid var(--border);
   padding: 2rem 1.25rem;
   scrollbar-width: none;
@@ -227,7 +232,7 @@ a:has(> time.dt-published):visited { color: var(--text-muted); }
   font-size: 0.7rem;
   font-weight: 600;
   color: var(--text-muted);
-  background: var(--bg);
+  background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: 999px;
   padding: 0.1em 0.45em;
@@ -795,7 +800,7 @@ html.nc-light .theme-toggle__moon { display: block; }
     right: 0;
     height: auto;
     z-index: 100;
-    background: var(--bg);
+    background: var(--sidebar-bg);
     border-right: none;
     border-bottom: 1px solid var(--border);
     padding: 0;
@@ -879,7 +884,7 @@ html.nc-light .theme-toggle__moon { display: block; }
     border-top: 1px solid var(--border);
     max-height: calc(100vh - 56px);
     overflow-y: auto;
-    background: var(--bg);
+    background: var(--sidebar-bg);
     min-height: 0;
   }
 

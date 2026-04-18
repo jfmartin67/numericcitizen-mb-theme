@@ -16,7 +16,8 @@
 /*
 :root {
   --bg:              #0f0f0f;   /* Page background              */
-  --bg-surface:      #1a1a1a;   /* Cards, code blocks, sidebar  */
+  --bg-surface:      #1a1a1a;   /* Cards, code blocks, pills    */
+  --sidebar-bg:      #080808;   /* Left sidebar background      */
   --border:          #2a2a2a;   /* Dividers and borders         */
   --text:            #e2e2e2;   /* Primary text                 */
   --text-muted:      #888;      /* Dates, metadata, labels      */
