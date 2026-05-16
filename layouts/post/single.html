@@ -11,10 +11,10 @@
         {{ .Date.Format "2006-01-02 · 15:04" }}
       </time>
     </a>
-    {{ $showCats := false }}{{ range .Params.categories }}{{ if ne . "Newsletter" }}{{ $showCats = true }}{{ end }}{{ end }}
+    {{ $showCats := false }}{{ range .Params.categories }}{{ if and (ne . "Newsletter") (ne . "Longer posts") }}{{ $showCats = true }}{{ end }}{{ end }}
     {{ if $showCats -}}
     <span class="post__categories">
-      {{ range .Params.categories -}}{{ if ne . "Newsletter" -}}{{ $cat := . }}{{ with $.Site.GetPage (printf "/categories/%s" $cat) -}}<a href="{{ .Permalink }}" class="p-category">{{ $cat }}</a>{{- end }}{{ end }}{{- end }}
+      {{ range .Params.categories -}}{{ if and (ne . "Newsletter") (ne . "Longer posts") -}}{{ $cat := . }}{{ with $.Site.GetPage (printf "/categories/%s" $cat) -}}<a href="{{ .Permalink }}" class="p-category">{{ $cat }}</a>{{- end }}{{ end }}{{- end }}
     </span>
     {{- end }}
   </div>
