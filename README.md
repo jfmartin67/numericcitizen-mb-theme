@@ -2,7 +2,7 @@
 
 A clean, minimal, dark-first theme for [Micro.blog](https://micro.blog), built by [Numeric Citizen](https://numericcitizen.me). It features a left sidebar layout, an animated Matrix-style background, a first-class Photos page, a full archive view, and a polished dark/light mode toggle — all without requiring any plugins.
 
-**Current version:** 1.1.0
+**Current version:** 1.1.1
 
 ---
 
