@@ -26,8 +26,8 @@
 {{ with .Site.Params.bluesky_url }}<link rel="me" href="{{ . }}">
 {{ end }}
 
-<link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css?v={{ .Site.Data.version | default "0.11.4" }}">
-<link rel="stylesheet" href="{{ .Site.BaseURL }}css/custom.css?v={{ .Site.Data.theme.version | default "0.11.4" }}">
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css?v={{ .Site.Data.version | default "1.1.0" }}">
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/custom.css?v={{ .Site.Data.theme.version | default "1.1.0" }}">
 
 <!-- Micro.blog plugin stylesheets -->
 {{ range .Site.Params.plugins_css -}}

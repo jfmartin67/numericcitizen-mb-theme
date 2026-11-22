@@ -21,6 +21,11 @@
   {{ if and .Site.Params.show_reading_time (gt .ReadingTime 1) -}}
   <p class="post__reading-time"><i class="fa-regular fa-clock" aria-hidden="true"></i> {{ .ReadingTime }} min read</p>
   {{- end }}
+  {{ with .Params.audio -}}
+  <div class="post__narration">
+    <script type="text/javascript" src="https://micro.blog/narration.js?url={{ . }}"></script>
+  </div>
+  {{- end }}
   <div class="post__content e-content">
     {{ .Content }}
   </div>

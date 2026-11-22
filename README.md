@@ -2,7 +2,7 @@
 
 A clean, minimal, dark-first theme for [Micro.blog](https://micro.blog), built by [Numeric Citizen](https://numericcitizen.me). It features a left sidebar layout, an animated Matrix-style background, a first-class Photos page, a full archive view, and a polished dark/light mode toggle — all without requiring any plugins.
 
-**Current version:** 0.11.4
+**Current version:** 1.1.0
 
 ---
 
@@ -85,6 +85,16 @@ The sidebar pulls the "About" blurb from the first source it finds:
 ### Posts (homepage — `/`)
 
 Recent posts in reverse-chronological order, 10 per page. Short posts (microblog entries without a title) display inline. Long posts show a title, content, date, reading time, categories, and a permalink.
+
+### Audio Narration
+
+Single post pages support [Micro.blog audio narration](https://help.micro.blog/t/audio-narration/2858). Attach an MP3 of the post being read aloud; when Micro.blog detects it as narration (audio length roughly matches reading time), it hides the inline player and the theme shows a "Listen" play button below the post meta via `narration.js`. The button only appears on permalink pages (a Micro.blog limitation), not on the homepage list.
+
+To add narration to an existing post, insert a hidden audio tag (the Mac app's **Copy Audio with Narration** produces one):
+
+```html
+<audio src="https://cdn.uploads.micro.blog/…/narration.mp3" preload="metadata" style="display: none"></audio>
+```
 
 ### Archive (`/archive/`)
 
